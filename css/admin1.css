@@ -1,0 +1,165 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+.btn{
+	display: inline-block;
+	border:1.5px solid white;
+	padding: 10px 17px;
+	background-color: #ff6c00;
+	text-decoration: none;
+	font-family: 'Work Sans', sans-serif;
+	font-size: 1em;
+	color: #ffffff ;
+	border-radius:7px;
+	transition: 0.1s;
+}
+.btn:hover{
+	background-color: #79a2ff;
+	color: #ffffff;
+}
+.btn:active{
+	background-color: #79a2ff;
+}
+.btn1{
+	display: inline-block;
+	border: 0px solid #ff6c00;
+	padding: 10px 10px;
+	background-color: #ececec;
+	text-decoration: none;
+	font-family: 'Work Sans', sans-serif;
+	font-size: 1.2em;
+	color: #ff6c00 ;
+	border-radius: 7px;
+	transition: 0.1s;
+}
+.btn1:hover{
+	color: #79a2ff;
+}
+.btn2{
+	display: inline-block;
+	border: 0px solid #ff6c00;
+	padding: 10px 90px;
+	background-color: #ff6c00;
+	text-decoration: none;
+	font-family: 'Work Sans', sans-serif;
+	font-size: 1em;
+	color: #ffffff ;
+	border-radius: 0px;
+	transition: 0.1s;
+}
+.btn2:hover{
+	background-color: #79a2ff;
+	color: #ffffff;
+}
+.btn2:active{
+	background-color: #79a2ff;
+}
+.topics{
+	display: inline-block;
+	border: 0px solid #ff6c00;
+	padding: 10px 120px;
+	background-color: #ff6c00;
+	text-decoration: none;
+	font-family: 'Work Sans', sans-serif;
+	font-size: 1.2em;
+	color: #ffffff ;
+	border-bottom-right-radius: 50px;
+	transition: 0.1s;
+}
+.in{
+	border:0px solid #ff6c00;
+	border-radius:10px;
+	height: 30px;
+	width: 350px;
+	font-size: 1em;
+	padding-left: 55px;
+}
+
+.buttonmenu{
+	border:0px solid#ff6c00;
+	height:15px;
+	width:30px;
+	font-size:1em;
+	padding-right:5px;
+}
+.statuskru{
+	width:420px;
+	height:auto;
+	border:0px; 
+	display:inline-block;
+	background:#ffffff;
+	font-size:1em;
+	color:#ff6c00;
+	text-align: left;
+	border:1px solid #ff6c00;
+    border-radius:6px;
+    line-height: 42px;
+	font-family: 'Work Sans', sans-serif; 
+	box-sizing: border-box 0px;
+}
+.howto{
+	display: inline-block;
+	border: 0px solid #ff6c00;
+	padding: 15px 20px;
+	background-color: #ff6c00;
+	font-family: 'Work Sans', sans-serif;
+	font-size: 1em;
+	color: #ffffff ;
+	border-radius:20px;
+	transition: 0.1s;
+}
+.howto:hover{
+	background-color: #79a2ff;
+	color: #ffffff;
+}
+.howto:active{
+    background-color: #79a2ff;
+}
+.text {
+	line-height: 0;
+    margin-top: 0px;
+    margin-left: 20px;
+}
+.text-head {
+	line-height: 0;
+    margin-top: 30px;
+    margin-left: 20px;
+}
+.statuskru img{
+	margin-left: 420px;
+	margin-top: -90px
+}
+.button4{
+	display: block;
+	width:auto;
+	height: 50px;
+	position: relative;
+	border-radius: 8px;
+}
+.button4 .content{
+	display: block;
+	position: absolute;
+	width: 220px;
+	height: 100%;
+	line-height: 55px;
+	background-color: #FF8C00;
+	text-align: center;
+	color: rgb(255, 255, 255);
+	text-transform: uppercase;
+	cursor: pointer;
+	border-radius: 5px;
+	font-size: 36px;
+	
+	
+}
+.button4:active .content{
+	
+	top:3px;
+	
+}
+.button4:hover .content{
+	
+	background-color: rgb(255, 167, 67);
+	transition: .3s;
+}

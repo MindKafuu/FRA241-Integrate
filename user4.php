@@ -20,6 +20,11 @@
 
     <title>Classroom Schedule</title>
   </head>
+  <script>
+    function green(){
+        window.location="index.php"
+    }
+  </script>
   <style>
   body {
   background-color: #ececec;
@@ -43,7 +48,7 @@
   </header>
   <div style="margin-top: -94px; margin-left:87.7%">
   <a href="index.php" class="btn"><b>?</b></a>
-  <a href="index.php" class="btn"><b>Log out</b></a>
+  <button onclick="green()" name="logout" class="btn"><b>logout</b></button>
 </div>
 <div style="margin-top: 20px; margin-left:60.3%">
   <a href="user1.php" class="btn1"><b>Profile</b></a>
@@ -1118,3 +1123,9 @@
                 }
             }
         ?>
+        <?php
+    if(isset($_POST['logout']))
+        {
+            session_destroy();
+        }
+?>

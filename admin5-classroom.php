@@ -58,31 +58,43 @@
     </div>
         <div style="margin-top:25px;">
             <br><b class="topics">Summary</b><br><br><br>
-            <a href="admin5.php" class="btn2"style="background-color:#79a2ff"><b>Teacher</b></a><br><br>
+            <a href="admin5.php" class="btn2"><b>Teacher</b></a><br><br>
             <a href="admin5-fibo.php" class="btn2"><b>FIBO Subjests</b></a><br><br>
             <a href="admin5-fund.php" class="btn2"><b>Fundamental Subjects</b></a><br><br>
-            <a href="admin5-classroom.php" class="btn2"><b>Classroom</b></a><br><br>
+            <a href="admin5-classroom.php" class="btn2"style="background-color:#79a2ff"><b>Classroom</b></a><br><br>
         </div>
+        
         <div style="margin-top: -280px; margin-left:650px">
-            <p class='headteacher'><b>Teacher</b></p><br><br>
+            <p class='headclassroom'><b>Classroom</b></p><br><br>
         </div>
         <div style="margin-top: 0px; margin-left:60px">
         <?php
-                $allsubject = "SELECT * FROM table_account WHERE teacher_status='T'";
-                $smyData2 = mysqli_query($con, $allsubject);
-                $save = "";
-                $x=1;
-                while($row = mysqli_fetch_array($smyData2)){
-                    $check = $row['teacher_name'];
-                    echo "<div style='margin-top:0px; margin-left:450px'class='statuskru2'>";
-                    echo "<p class='edit'>&nbsp&nbsp<b>".$x.".".$row["teacher_name"]."<a href='admin2-link.php'>
-                    <button class='editbutton'><i class='material-icons'>mode_edit</i></button></a></b></p><br>";
-                    $x++;
-                    if($save != "") {
-                        echo "<p>".$save."</p><br>";
-                    }
-                    echo "</div>";
-                }
+                 $allroom = "SELECT room_code,room_type FROM table_room";
+                 $smyData2 = mysqli_query($con, $allroom);
+                 $save = "";
+                 $x=1;
+                 while($row = mysqli_fetch_array($smyData2)){
+                     echo "<div style='margin-top:0px; margin-left:450px'class='statuskru'>";
+                     ///echo "<p class='edit'>&nbsp&nbsp<b>".$x.".&nbsp".$row["room_code"]."(".$row["room_type"].")
+                     ///<button class='editbutton'><i class='material-icons'>mode_edit</i></button></b></p><br>";
+                     if ($row["room_type"]=="computer"){
+                        echo "<p class='edit'>&nbsp&nbsp<b>".$x.".&nbsp".$row["room_code"]."(".$row["room_type"].")
+                        <a href ='admin4-linkcom.php'><button class='editbutton'><i class='material-icons'>mode_edit</i></button></a></b></p><br>";
+                     } 
+                     else if ($row["room_type"]=="studioroom"){
+                        echo "<p class='edit'>&nbsp&nbsp<b>".$x.".&nbsp".$row["room_code"]."(".$row["room_type"].")
+                        <a href ='admin4-linkstu.php'><button class='editbutton'><i class='material-icons'>mode_edit</i></button></a></b></p><br>";
+                     } 
+                     else{
+                        echo "<p class='edit'>&nbsp&nbsp<b>".$x.".&nbsp".$row["room_code"]."(".$row["room_type"].")
+                        <a href ='admin4-linkclass.php'><button class='editbutton'><i class='material-icons'>mode_edit</i></button></a></b></p><br>";
+                     } 
+                     $x++;
+                     if($save != "") {
+                         echo "<p>".$save."</p><br>";
+                     }
+                     echo "</div>";
+                 }
             ?>            
         </div>
   </body>

@@ -26,17 +26,7 @@
     <title>Classroom Schedule</title>
   </head>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script>
-	$(document).ready(function(){
-    $("q").hide();
-    $("#hide").click(function(){
-        $("q").hide();
-    });
-    $("#show").click(function(){
-        $("q").show();
-    });
-    });
-    </script>
+  
   <style>
     body {
     background-color: #ececec;
@@ -65,10 +55,10 @@
     </div>
     <div style="margin-top: 20px; margin-left:33.3%">
         <a href="admin1.php" class="btn1"><b>Home</b></a>
-        <a href="admin2.php" class="btn1" style=" color: #79a2ff"><b>User Info</b></a>
+        <a href="admin2.php" class="btn1" ><b>User Info</b></a>
         <a href="admin3.php" class="btn1"><b>Class Info</b></a>
         <a href="admin4.php" class="btn1"><b>Class Management</b></a>
-        <a href="admin5.php" class="btn1"><b>Summary</b></a>
+        <a href="admin5.php" class="btn1"style=" color: #79a2ff"><b>Summary</b></a>
         <a href="admin6.php" class="btn1"><b>User status</b></a>
         <a href="admin7.php" class="btn1"><b>Complete</b></a>
     </div>

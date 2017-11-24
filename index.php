@@ -1,5 +1,6 @@
 <?php
   require 'dbconfig/config.php';
+  session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -54,7 +55,8 @@
             while($row = mysqli_fetch_array($smyData)) {
               if($row['teacher_email'] == $username){
                 if($row['teacher_status'] == "T") {
-                  header('location:user2.php');
+                  $_SESSION['username'] = $username;
+                  header('location:user1.php');
                 }
                 else if($row['teacher_status']  == "A") {
                   header('location:admin1.php');

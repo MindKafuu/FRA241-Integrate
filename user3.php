@@ -76,7 +76,9 @@ var y;
                         document.getElementById("gB").innerHTML=green;
                     }
              }
-    
+             function greed(){
+                    window.location="index.php"
+    }
 
            
     </script>
@@ -106,7 +108,7 @@ var y;
   <form action="user3.php" method="post">
   <div style="margin-top: -94px; margin-left:87.7%">
   <a href="index.php" class="btn"><b>?</b></a>
-  <a href="index.php" class="btn"><b>Log out</b></a>
+  <button onclick="greed()" name="logout" class="btn"><b>logout</b></button>
   </div>
   
   <div style="margin-top: 20px; margin-left:60.3%">
@@ -183,3 +185,9 @@ var y;
         
   </body>
 </html>
+<?php
+    if(isset($_POST['logout']))
+        {
+            session_destroy();
+        }
+?>

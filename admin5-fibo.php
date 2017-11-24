@@ -49,7 +49,7 @@
     </div>
     <div style="margin-top: 20px; margin-left:33.3%">
         <a href="admin1.php" class="btn1"><b>Home</b></a>
-        <a href="admin2.php" class="btn1"><b>User Info</b></a>
+        <a href="admin2.php" class="btn1" ><b>User Info</b></a>
         <a href="admin3.php" class="btn1"><b>Class Info</b></a>
         <a href="admin4.php" class="btn1"><b>Class Management</b></a>
         <a href="admin5.php" class="btn1"style=" color: #79a2ff"><b>Summary</b></a>
@@ -58,32 +58,32 @@
     </div>
         <div style="margin-top:25px;">
             <br><b class="topics">Summary</b><br><br><br>
-            <a href="admin5.php" class="btn2"style="background-color:#79a2ff"><b>Teacher</b></a><br><br>
-            <a href="admin5-fibo.php" class="btn2"><b>FIBO Subjests</b></a><br><br>
+            <a href="admin5.php" class="btn2"><b>Teacher</b></a><br><br>
+            <a href="admin5-fibo.php" class="btn2"style="background-color:#79a2ff"><b>FIBO Subjests</b></a><br><br>
             <a href="admin5-fund.php" class="btn2"><b>Fundamental Subjects</b></a><br><br>
             <a href="admin5-classroom.php" class="btn2"><b>Classroom</b></a><br><br>
         </div>
+        
         <div style="margin-top: -280px; margin-left:650px">
-            <p class='headteacher'><b>Teacher</b></p><br><br>
+            <p class='headfibo'><b>FIBO Subjects</b></p><br><br>
         </div>
         <div style="margin-top: 0px; margin-left:60px">
         <?php
-                $allsubject = "SELECT * FROM table_account WHERE teacher_status='T'";
-                $smyData2 = mysqli_query($con, $allsubject);
-                $save = "";
-                $x=1;
-                while($row = mysqli_fetch_array($smyData2)){
-                    $check = $row['teacher_name'];
-                    echo "<div style='margin-top:0px; margin-left:450px'class='statuskru2'>";
-                    echo "<p class='edit'>&nbsp&nbsp<b>".$x.".".$row["teacher_name"]."<a href='admin2-link.php'>
-                    <button class='editbutton'><i class='material-icons'>mode_edit</i></button></a></b></p><br>";
-                    $x++;
-                    if($save != "") {
-                        echo "<p>".$save."</p><br>";
+                 $allsubject = "SELECT DISTINCT subject_code,subject_name FROM table_subject_description_input_admin";
+                 $smyData2 = mysqli_query($con, $allsubject);
+                 $save = "";
+                 $x=1;
+                    while($row = mysqli_fetch_array($smyData2)){
+                        echo "<div style='margin-top:0px; margin-left:450px'class='statuskru'>";
+                        echo "<p class='edit'>&nbsp&nbsp<b>".$x.".&nbsp".$row["subject_code"]."(".$row["subject_name"].")
+                        <a href='admin3-link.php'><button class='editbutton'><i class='material-icons'>mode_edit</i></button></a></b></p><br>";
+                        $x++;
+                        if($save != "") {
+                            echo "<p>".$save."</p><br>";
+                        }
+                        echo "</div>";
                     }
-                    echo "</div>";
-                }
-            ?>            
+        ?>        
         </div>
   </body>
 </html>

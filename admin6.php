@@ -103,6 +103,6 @@
 <?php
     if(isset($_POST['mind'])) {
     $mystring = system("py Algorithm.py myargs",$retval);
-    echo '<script type="text/javascript"> alert("Schedule Complete!!") </script>';
+    echo '<script type="text/javascript"> alert("Schedule Complete!!"); window.location="admin7.php"; </script> ';
     }
 ?>

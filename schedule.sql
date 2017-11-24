@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 24, 2017 at 07:48 AM
+-- Generation Time: Nov 24, 2017 at 07:56 AM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 7.1.11
 
@@ -61,6 +61,44 @@ INSERT INTO `table_account` (`No`, `teacher_name`, `teacher_email`, `teacher_pas
 (18, 'Ms.Mirawee Kumpakure', 'Mirawee@fibo.kmutt.ac.th', '1234', 'A'),
 (19, 'ไทน์เทพ', '66', '123456', 'T'),
 (20, 'ไทน์เทพ', '66', '123456', 'T');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `table_fundamental_subjects`
+--
+
+CREATE TABLE `table_fundamental_subjects` (
+  `No` int(3) NOT NULL,
+  `subject_level` varchar(100) NOT NULL,
+  `subject_code` varchar(100) NOT NULL,
+  `subject_name` varchar(100) NOT NULL,
+  `subject_hour_per_week` varchar(100) NOT NULL,
+  `subject_sec` varchar(100) NOT NULL,
+  `day` varchar(100) NOT NULL,
+  `start_time` varchar(100) NOT NULL,
+  `end_time` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `table_fundamental_subjects`
+--
+
+INSERT INTO `table_fundamental_subjects` (`No`, `subject_level`, `subject_code`, `subject_name`, `subject_hour_per_week`, `subject_sec`, `day`, `start_time`, `end_time`) VALUES
+(1, '1', 'GEN101', 'พละ', '1', 'AB', '2', '7', '8'),
+(2, '1', 'LNG101', 'English', '3', 'AB', '4', '1', '3'),
+(3, '1', 'MTH101', 'Math', '3', 'AB', '2', '2', '3'),
+(4, '1', 'MTH101', 'Math', '3', 'AB', '4', '5', '6'),
+(5, '1', 'PHY103', 'Physics', '3', 'AA', '1', '0', '1'),
+(6, '1', 'PHY103', 'Physics', '3', 'AA', '4', '7', '8'),
+(7, '1', 'PHY103', 'Physics', '3', 'BB', '0', '0', '1'),
+(8, '1', 'PHY103', 'Physics', '3', 'BB', '4', '7', '8'),
+(9, '1', 'PHY191', 'fckingPhylab', '1', 'AB', '0', '2', '3'),
+(10, '1', 'LNG1-2', 'Eng2', '3', 'AB', '3', '1', '3'),
+(11, '2', 'LNG2-3', 'Eng2', '3', 'AB', '3', '0', '2'),
+(12, '2', 'MTH201', 'cal3', '3', 'AB', '2', '5', '6'),
+(13, '2', 'MTH201', 'cal3', '3', 'AB', '4', '7', '8'),
+(14, '3', 'LNG103', 'Eng3', '3', 'AB', '3', '1', '3');
 
 -- --------------------------------------------------------
 
@@ -133,6 +171,28 @@ INSERT INTO `table_subject_description_input` (`No`, `subject_level`, `subject_c
 (22, '3', 'FRA361', 'Mr.Narongsak', '3', '3', 'AB', 'FB401'),
 (23, '4', 'FRA451', 'Dr.Boontariga Kasemsontitum', '3', '3', 'AB', 'FB306'),
 (24, '4', 'FRA452', 'Dr.Supachai Vongbunyong', '3', '3', 'AB', 'FB305');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `table_subject_description_input_admin`
+--
+
+CREATE TABLE `table_subject_description_input_admin` (
+  `No` int(3) NOT NULL,
+  `subject_level` varchar(100) NOT NULL,
+  `subject_code` varchar(100) NOT NULL,
+  `subject_name` varchar(100) NOT NULL,
+  `subject_hour_per_week` varchar(100) NOT NULL DEFAULT '3',
+  `subject_sec_teacher_want` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `table_subject_description_input_admin`
+--
+
+INSERT INTO `table_subject_description_input_admin` (`No`, `subject_level`, `subject_code`, `subject_name`, `subject_hour_per_week`, `subject_sec_teacher_want`) VALUES
+(1, 'B1', 'FRAt133235', 'test1', '3', NULL);
 
 -- --------------------------------------------------------
 
@@ -335,6 +395,12 @@ ALTER TABLE `table_account`
   ADD PRIMARY KEY (`No`);
 
 --
+-- Indexes for table `table_fundamental_subjects`
+--
+ALTER TABLE `table_fundamental_subjects`
+  ADD PRIMARY KEY (`No`);
+
+--
 -- Indexes for table `table_room`
 --
 ALTER TABLE `table_room`
@@ -344,6 +410,12 @@ ALTER TABLE `table_room`
 -- Indexes for table `table_subject_description_input`
 --
 ALTER TABLE `table_subject_description_input`
+  ADD PRIMARY KEY (`No`);
+
+--
+-- Indexes for table `table_subject_description_input_admin`
+--
+ALTER TABLE `table_subject_description_input_admin`
   ADD PRIMARY KEY (`No`);
 
 --

@@ -25,9 +25,11 @@
     <script >
         function hidet(){
         document.getElementById("green").style.visibility="hidden";
+        document.getElementById("knight").style.visibility="hidden";
     }
         function showt(){
         document.getElementById("green").style.visibility="visible";//show dropdown
+        document.getElementById("knight").style.visibility="visible";//show dropdown
 
     }
     
@@ -282,7 +284,7 @@
           </select>
             </div><br><br><br><br><br><br>
             <div style="margin-top:20px;margin-right:100px;margin-bottom:40px;">
-            <button id="green" name="Fundametal_save" class = "buttonsave">
+            <button id="knight" name="Fundametal_save" class = "buttonsave">
                 <span class = "content"><b>FundamentalSave</b></span>
             </button>
     </form>

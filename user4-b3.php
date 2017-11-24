@@ -1,3 +1,6 @@
+<?php
+      require 'dbconfig/config.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -9,8 +12,8 @@
     <link rel="shortcut icon" href="images/icon.png" title="Favicon"/>
     
     <!--style-->
-    <link rel="stylesheet" type="text/css" href="css/admin7-1.css">
-    <link rel="stylesheet" type="text/css" href="css/admin7-2.css">
+    <link rel="stylesheet" type="text/css" href="css/user4-1.css">
+    <link rel="stylesheet" type="text/css" href="css/user4-2.css">
 
     <!--font-->
     <link href="https://fonts.googleapis.com/css?family=Anonymous+Pro|Work+Sans" rel="stylesheet">
@@ -32,55 +35,52 @@
      text-align: left;}
 </style>
 <body>
-  <header>
-      <img src="images/FIBO_logo.jpg" width="55" height="62" style="margin-top: 10px; margin-left: 10px">
-      <div style="font-size: 1.8em; margin-top: -50px; margin-left: 80px">
-      <b>Classroom Schedule</b>
-      </div><br><br>
-      </header>
-      <div style="margin-top: -94px; margin-left:87.7%">
-          <a href="index.php" class="btn"><b>?</b></a>
-          <a href="index.php" class="btn"><b>Log out</b></a>
-      </div>
-      <div style="margin-top: 20px; margin-left:33.3%">
-          <a href="admin1.php" class="btn1"><b>Home</b></a>
-          <a href="admin2.php" class="btn1"><b>User Info</b></a>
-          <a href="admin3.php" class="btn1"><b>Class Info</b></a>
-          <a href="admin4.php" class="btn1"><b>Class Management</b></a>
-          <a href="admin5.php" class="btn1"><b>Summary</b></a>
-          <a href="admin6.php" class="btn1"><b>User status</b></a>
-          <a href="admin7.php" class="btn1"style=" color: #79a2ff"><b>Complete</b></a>
-      </div>
-      <div style="margin-top: 25px;">
-          <br><b class="topics">Complete Schedule</b>
-      </div><br><br>
+<header>
+<img src="images/FIBO_logo.jpg" width="55" height="62" style="margin-top: 10px; margin-left: 10px">
+<div style="font-size: 1.8em; margin-top: -50px; margin-left: 80px">
+<b>Classroom Schedule</b>
+</div><br><br>
+</header>
+<div style="margin-top: -94px; margin-left:87.7%">
+<a href="index.php" class="btn"><b>?</b></a>
+<a href="index.php" class="btn"><b>Log out</b></a>
+</div>
+<div style="margin-top: 20px; margin-left:60.3%">
+<a href="user1.php" class="btn1"><b>Profile</b></a>
+<a href="user2.php" class="btn1" ><b>Inconvenient Time</b></a>
+<a href="user3.php" class="btn1"><b>Classroom</b></a>
+<a href="user4.php" class="btn1"style=" color: #79a2ff"><b>Schedule</b></a>
+</div>
+<div style="margin-top: 25px;">
+    <br><b class="topics">Schedule</b><br><br>
+</div>
         <ul id="navbar">
-                <li><a href="admin7.php"style ="
-                    background-color:#ff6d00;"><b>ALL Schedule</b></a>
+                <li><a href="user4.php"style ="
+                    background-color:#ff6d00;">ALL Schedule</a>
                     
-                <li><a href="admin7-1.php" style ="background: url(images/arrow.png); 
+                <li><a href="user4-1.php" style ="background: url(images/arrow.png); 
                     background-repeat: no-repeat; 
                     background-size: 25px;
                     background-position: right center;
-                    background-color:#ff6d00"><b>Years Schedule</b></a>
+                    background-color:#ff6d00">Years Schedule</a>
                     <ul class="item">
                             <li><a href="#" style ="background: url(images/rightarrow.png); 
                                 background-repeat: no-repeat; 
                                 background-size: 15px;
                                 background-position: right center;
-                                background-color:#ff6d00"><b>Bachelor</b> </a>
+                                background-color:#ff6d00">Bachelor </a>
                                 <ul class="sub-item" style="margin-left:1px;margin-top:1px">
-                                    <li><a href="admin7-b1.php">1</a></li>
-                                    <li><a href="admin7-b2.php">2</a></li>
-                                    <li><a href="admin7-b3.php">3</a></li>
-                                    <li><a href="admin7-b4.php">4</a></li>
+                                    <li><a href="user4-b1.php">1</a></li>
+                                    <li><a href="user4-b2.php">2</a></li>
+                                    <li><a href="user4-b3.php">3</a></li>
+                                    <li><a href="user4-b4.php">4</a></li>
                                 </ul>
                             </li>
                             <li><a href="#" style ="background: url(images/rightarrow.png); 
                                 background-repeat: no-repeat; 
                                 background-size: 15px;
                                 background-position: right center;
-                                background-color:#ff6d00"><b>Master</b></a>
+                                background-color:#ff6d00">Master</a>
                                 <ul class="sub-item" style="margin-left:1px;margin-top:1px">
                                     <li><a href="#">1</a></li>
                                     <li><a href="#">2</a></li>
@@ -91,7 +91,7 @@
                                 background-repeat: no-repeat; 
                                 background-size: 15px;
                                 background-position: right center;
-                                background-color:#ff6d00"><b>phD</b></a>
+                                background-color:#ff6d00">phD</a>
                                 <ul class="sub-item" style="margin-left:1px;margin-top:1px">
                                     <li><a href="#">1</a></li>
                                     <li><a href="#">2</a></li>
@@ -100,12 +100,12 @@
                             </li>
                         </ul>
                 </li>
-                <li><a href="admin7-2.php"style ="
+                <li><a href="user4-2.php"style ="
                     background-repeat: no-repeat; 
                     background-size: 25px;
                     background-position: right center;
                     background-color:#ff6d00;
-                    margin-top : -0.5px"><b>Name list</b></a>
+                    margin-top : -0.5px">Name list</a>
                     
                 </li>
             </ul>
@@ -113,7 +113,7 @@
 
         <!--display table--> 
         <div  style="margin-top: -300px; margin-left: 320px" class="show">
-        <h1>Fourth Year Sec A</h1>
+        <h1>Third Year Sec A</h1>
         <table>
             <tr class="head">
                 <th rowspan="2">
@@ -161,7 +161,7 @@
                     Monday
                 </td>
                 <?php
-                    createTable("4", "A", "0");
+                    createTable("3", "A", "0");
                 ?>
             </tr>
             <tr>
@@ -169,7 +169,7 @@
                     Tuesday
                 </td>
                 <?php
-                    createTable("4", "A", "1");
+                    createTable("3", "A", "1");
                 ?>
             </tr>
             <tr>
@@ -177,7 +177,7 @@
                     Wednesday
                 </td>
                 <?php
-                    createTable("4", "A", "2");
+                    createTable("3", "A", "2");
                 ?>
             </tr>
             <tr>
@@ -185,7 +185,7 @@
                     Thurday
                 </td>
                 <?php
-                    createTable("4", "A", "3");
+                    createTable("3", "A", "3");
                 ?>
             </tr>
             <tr>
@@ -193,7 +193,7 @@
                     Friday
                 </td>
                 <?php
-                    createTable("4", "A", "4");
+                    createTable("3", "A", "4");
                 ?>
             </tr>
             <tr>
@@ -201,11 +201,11 @@
                     Saturday
                 </td>
                 <?php
-                    createTable("4", "A", "5");
+                    createTable("3", "A", "5");
                 ?>
             </tr>
             </table>
-            <h1>Fourth Year Sec B</h1>
+            <h1>Third Year Sec B</h1>
             <table>
             <tr class="head">
                 <th rowspan="2">
@@ -253,7 +253,7 @@
                     Monday
                 </td>
                 <?php
-                    createTable("4", "B", "0");
+                    createTable("3", "B", "0");
                 ?>
             </tr>
             <tr>
@@ -261,7 +261,7 @@
                     Tuesday
                 </td>
                 <?php
-                    createTable("4", "B", "1");
+                    createTable("3", "B", "1");
                 ?>
             </tr>
             <tr>
@@ -269,7 +269,7 @@
                     Wednesday
                 </td>
                 <?php
-                    createTable("4", "B", "2");
+                    createTable("3", "B", "2");
                 ?>
             </tr>
             <tr>
@@ -277,7 +277,7 @@
                     Thurday
                 </td>
                 <?php
-                    createTable("4", "B", "3");
+                    createTable("3", "B", "3");
                 ?>
             </tr>
             <tr>
@@ -285,7 +285,7 @@
                     Friday
                 </td>
                 <?php
-                    createTable("4", "B", "4");
+                    createTable("3", "B", "4");
                 ?>
             </tr>
             <tr>
@@ -293,7 +293,7 @@
                     Saturday
                 </td>
                 <?php
-                    createTable("4", "B", "5");
+                    createTable("3", "B", "5");
                 ?>
             </tr>
             </table>

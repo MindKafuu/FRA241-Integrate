@@ -113,7 +113,7 @@
 
         <!--display table--> 
         <div  style="margin-top: -300px; margin-left: 320px" class="show">
-        <h1>Second Year Sec B</h1>
+        <h1>Second Year Sec A</h1>
         <table>
             <tr class="head">
                 <th rowspan="2">

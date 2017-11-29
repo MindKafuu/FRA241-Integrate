@@ -1,6 +1,5 @@
 <?php
       require 'dbconfig/config.php';
-      session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -113,95 +112,757 @@
                     
                 </li>
             </ul>
-</div></br></br>
+        </div></br></br>
         <div  style="margin-top: -300px; margin-left: 320px" class="show">
-        <h1>First Year Sec A</h1>
-        <table>
-            <tr class="head">
-                <th rowspan="2">
-                    Day
-                </th>
-                <th colspan="10">
-                    Time
-                </th>
+            <?php  $sql = "SELECT * FROM table_account";
+                $result = mysqli_query($con,$sql);
+                echo "<div style='margin-top:-10px; margin-left:-20px;'>";
+                echo "<select name='lecturer'>";
+                while ($row = mysqli_fetch_array($result)) {
+                    echo "<option value='" . $row['teacher_name'] ."'>" . $row['teacher_name'] ."</option>";
+                }
+                echo "</select>";
+                echo "</div>";  
+            ?>
+            <div>
+                <h1>First Year Sec A</h1>
+                <table>
+                    <tr class="head">
+                        <th rowspan="2">
+                            Day
+                        </th>
+                        <th colspan="10">
+                            Time
+                        </th>
 
-            </tr>
-            <tr  class="head-time">
-                <th>
-                    08.30-09.30
-                </th>
-                <th>
-                    09.30-10.30
-                </th>
-                <th>
-                    10.30-11.30
-                </th>
-                <th>
-                    11.30-12.30
-                </th>
-                <th>
-                    12.30-13.30
-                </th>
-                <th>
-                    13.30-14.30
-                </th>
-                <th>
-                    14.30-15.30
-                </th>
-                <th>
-                    15.30-16.30
-                </th>
-                <th>
-                    16.30-17.30
-                </th>
-                <th>
-                    17.30-18.30
-                </th>
-            </tr>
+                    </tr>
+                    <tr  class="head-time">
+                        <th>
+                            08.30-09.30
+                        </th>
+                        <th>
+                            09.30-10.30
+                        </th>
+                        <th>
+                            10.30-11.30
+                        </th>
+                        <th>
+                            11.30-12.30
+                        </th>
+                        <th>
+                            12.30-13.30
+                        </th>
+                        <th>
+                            13.30-14.30
+                        </th>
+                        <th>
+                            14.30-15.30
+                        </th>
+                        <th>
+                            15.30-16.30
+                        </th>
+                        <th>
+                            16.30-17.30
+                        </th>
+                        <th>
+                            17.30-18.30
+                        </th>
+                    </tr>
+                    <tr>
+                        <td style="background-color: yellow">
+                            Monday
+                        </td>
+                        <?php
+                            createTable("1", "A", "0");
+                        ?>
+                    </tr>
+                    <tr>
+                        <td style="background-color: yellow">
+                            Tuesday
+                        </td>
+                        <?php
+                            createTable("1", "A", "1");
+                        ?>
+                    </tr>
+                    <tr>
+                        <td style="background-color: yellow">
+                            Wednesday
+                        </td>
+                        <?php
+                            createTable("1", "A", "2");
+                        ?>
+                    </tr>
+                    <tr>
+                        <td style="background-color: yellow">
+                            Thurday
+                        </td>
+                        <?php
+                            createTable("1", "A", "3");
+                        ?>
+                    </tr>
+                    <tr>
+                        <td style="background-color: yellow">
+                            Friday
+                        </td>
+                        <?php
+                            createTable("1", "A", "4");
+                        ?>
+                    </tr>
+                    <tr>
+                        <td style="background-color: yellow">
+                            Saturday
+                        </td>
+                        <?php
+                            createTable("1", "A", "5");
+                        ?>
+                    </tr>
+                    </table>
+                    <h1>First Year Sec B</h1>
+                    <table>
+                    <tr class="head">
+                        <th rowspan="2">
+                            Day
+                        </th>
+                        <th colspan="10">
+                            Time
+                        </th>
+
+                    </tr>
+                    <tr  class="head-time">
+                        <th>
+                            08.30-09.30
+                        </th>
+                        <th>
+                            09.30-10.30
+                        </th>
+                        <th>
+                            10.30-11.30
+                        </th>
+                        <th>
+                            11.30-12.30
+                        </th>
+                        <th>
+                            12.30-13.30
+                        </th>
+                        <th>
+                            13.30-14.30
+                        </th>
+                        <th>
+                            14.30-15.30
+                        </th>
+                        <th>
+                            15.30-16.30
+                        </th>
+                        <th>
+                            16.30-17.30
+                        </th>
+                        <th>
+                            17.30-18.30
+                        </th>
+                    </tr>
+                    <tr>
+                    <td style="background-color: yellow">
+                        Monday
+                    </td>
+                    <?php
+                        createTable("1", "B", "0");
+                    ?>
+                </tr>
+                <tr>
+                    <td style="background-color: yellow">
+                        Tuesday
+                    </td>
+                    <?php
+                        createTable("1", "B", "1");
+                    ?>
+                </tr>
+                <tr>
+                    <td style="background-color: yellow">
+                        Wednesday
+                    </td>
+                    <?php
+                        createTable("1", "B", "2");
+                    ?>
+                </tr>
+                <tr>
+                    <td style="background-color: yellow">
+                        Thurday
+                    </td>
+                    <?php
+                        createTable("1", "B", "3");
+                    ?>
+                </tr>
+                <tr>
+                    <td style="background-color: yellow">
+                        Friday
+                    </td>
+                    <?php
+                        createTable("1", "B", "4");
+                    ?>
+                </tr>
+                <tr>
+                    <td style="background-color: yellow">
+                        Saturday
+                    </td>
+                    <?php
+                        createTable("1", "B", "5");
+                    ?>
+                </tr>
+                    </table>
+                    <h1>Second Year Sec A</h1>
+                    <table>
+                    <tr class="head">
+                        <th rowspan="2">
+                            Day
+                        </th>
+                        <th colspan="10">
+                            Time
+                        </th>
+
+                    </tr>
+                    <tr  class="head-time">
+                        <th>
+                            08.30-09.30
+                        </th>
+                        <th>
+                            09.30-10.30
+                        </th>
+                        <th>
+                            10.30-11.30
+                        </th>
+                        <th>
+                            11.30-12.30
+                        </th>
+                        <th>
+                            12.30-13.30
+                        </th>
+                        <th>
+                            13.30-14.30
+                        </th>
+                        <th>
+                            14.30-15.30
+                        </th>
+                        <th>
+                            15.30-16.30
+                        </th>
+                        <th>
+                            16.30-17.30
+                        </th>
+                        <th>
+                            17.30-18.30
+                        </th>
+                    </tr>
+                    <tr>
+                    <td style="background-color: yellow">
+                        Monday
+                    </td>
+                    <?php
+                        createTable("2", "A", "0");
+                    ?>
+                </tr>
+                <tr>
+                    <td style="background-color: yellow">
+                        Tuesday
+                    </td>
+                    <?php
+                        createTable("2", "A", "1");
+                    ?>
+                </tr>
+                <tr>
+                    <td style="background-color: yellow">
+                        Wednesday
+                    </td>
+                    <?php
+                        createTable("2", "A", "2");
+                    ?>
+                </tr>
+                <tr>
+                    <td style="background-color: yellow">
+                        Thurday
+                    </td>
+                    <?php
+                        createTable("2", "A", "3");
+                    ?>
+                </tr>
+                <tr>
+                    <td style="background-color: yellow">
+                        Friday
+                    </td>
+                    <?php
+                        createTable("2", "A", "4");
+                    ?>
+                </tr>
+                <tr>
+                    <td style="background-color: yellow">
+                        Saturday
+                    </td>
+                    <?php
+                        createTable("2", "A", "5");
+                    ?>
+                </tr>
+                    </table>
+                    <h1>Second Year Sec B</h1>
+                    <table>
+                    <tr class="head">
+                        <th rowspan="2">
+                            Day
+                        </th>
+                        <th colspan="10">
+                            Time
+                        </th>
+
+                    </tr>
+                    <tr  class="head-time">
+                        <th>
+                            08.30-09.30
+                        </th>
+                        <th>
+                            09.30-10.30
+                        </th>
+                        <th>
+                            10.30-11.30
+                        </th>
+                        <th>
+                            11.30-12.30
+                        </th>
+                        <th>
+                            12.30-13.30
+                        </th>
+                        <th>
+                            13.30-14.30
+                        </th>
+                        <th>
+                            14.30-15.30
+                        </th>
+                        <th>
+                            15.30-16.30
+                        </th>
+                        <th>
+                            16.30-17.30
+                        </th>
+                        <th>
+                            17.30-18.30
+                        </th>
+                    </tr>
+                    <tr>
+                    <td style="background-color: yellow">
+                        Monday
+                    </td>
+                    <?php
+                        createTable("2", "B", "0");
+                    ?>
+                </tr>
+                <tr>
+                    <td style="background-color: yellow">
+                        Tuesday
+                    </td>
+                    <?php
+                        createTable("2", "B", "1");
+                    ?>
+                </tr>
+                <tr>
+                    <td style="background-color: yellow">
+                        Wednesday
+                    </td>
+                    <?php
+                    createTable("2", "B", "2");
+                    ?>
+                </tr>
+                <tr>
+                    <td style="background-color: yellow">
+                        Thurday
+                    </td>
+                    <?php
+                        createTable("2", "B", "3");
+                    ?>
+                </tr>
+                <tr>
+                    <td style="background-color: yellow">
+                        Friday
+                    </td>
+                    <?php
+                        createTable("2", "B", "4");
+                    ?>
+                </tr>
+                <tr>
+                    <td style="background-color: yellow">
+                        Saturday
+                    </td>
+                    <?php
+                        createTable("2", "B", "5");
+                    ?>
+                </tr>
+                    </table>
+                    <h1>Third Year Sec A</h1>
+                <table>
+                    <tr class="head">
+                        <th rowspan="2">
+                            Day
+                        </th>
+                        <th colspan="10">
+                            Time
+                        </th>
+
+                    </tr>
+                    <tr  class="head-time">
+                        <th>
+                            08.30-09.30
+                        </th>
+                        <th>
+                            09.30-10.30
+                        </th>
+                        <th>
+                            10.30-11.30
+                        </th>
+                        <th>
+                            11.30-12.30
+                        </th>
+                        <th>
+                            12.30-13.30
+                        </th>
+                        <th>
+                            13.30-14.30
+                        </th>
+                        <th>
+                            14.30-15.30
+                        </th>
+                        <th>
+                            15.30-16.30
+                        </th>
+                        <th>
+                            16.30-17.30
+                        </th>
+                        <th>
+                            17.30-18.30
+                        </th>
+                    </tr>
+                    <tr>
+                    <td style="background-color: yellow">
+                        Monday
+                    </td>
+                    <?php
+                        createTable("3", "A", "0");
+                    ?>
+                </tr>
+                <tr>
+                    <td style="background-color: yellow">
+                        Tuesday
+                    </td>
+                    <?php
+                        createTable("3", "A", "1");
+                    ?>
+                </tr>
+                <tr>
+                    <td style="background-color: yellow">
+                        Wednesday
+                    </td>
+                    <?php
+                        createTable("3", "A", "2");
+                    ?>
+                </tr>
+                <tr>
+                    <td style="background-color: yellow">
+                        Thurday
+                    </td>
+                    <?php
+                        createTable("3", "A", "3");
+                    ?>
+                </tr>
+                <tr>
+                    <td style="background-color: yellow">
+                        Friday
+                    </td>
+                    <?php
+                        createTable("3", "A", "4");
+                    ?>
+                </tr>
+                <tr>
+                    <td style="background-color: yellow">
+                        Saturday
+                    </td>
+                    <?php
+                        createTable("3", "A", "5");
+                    ?>
+                </tr>
+                    </table>
+                    <h1>Third Year Sec B</h1>
+                <table>
+                    <tr class="head">
+                        <th rowspan="2">
+                            Day
+                        </th>
+                        <th colspan="10">
+                            Time
+                        </th>
+
+                    </tr>
+                    <tr  class="head-time">
+                        <th>
+                            08.30-09.30
+                        </th>
+                        <th>
+                            09.30-10.30
+                        </th>
+                        <th>
+                            10.30-11.30
+                        </th>
+                        <th>
+                            11.30-12.30
+                        </th>
+                        <th>
+                            12.30-13.30
+                        </th>
+                        <th>
+                            13.30-14.30
+                        </th>
+                        <th>
+                            14.30-15.30
+                        </th>
+                        <th>
+                            15.30-16.30
+                        </th>
+                        <th>
+                            16.30-17.30
+                        </th>
+                        <th>
+                            17.30-18.30
+                        </th>
+                    </tr>
+                    <tr>
+                    <td style="background-color: yellow">
+                        Monday
+                    </td>
+                    <?php
+                        createTable("3", "B", "0");
+                    ?>
+                </tr>
+                <tr>
+                    <td style="background-color: yellow">
+                        Tuesday
+                    </td>
+                    <?php
+                        createTable("3", "B", "1");
+                    ?>
+                </tr>
+                <tr>
+                    <td style="background-color: yellow">
+                        Wednesday
+                    </td>
+                    <?php
+                        createTable("3", "B", "2");
+                    ?>
+                </tr>
+                <tr>
+                    <td style="background-color: yellow">
+                        Thurday
+                    </td>
+                    <?php
+                        createTable("3", "B", "3");
+                    ?>
+                </tr>
+                <tr>
+                    <td style="background-color: yellow">
+                        Friday
+                    </td>
+                    <?php
+                        createTable("3", "B", "4");
+                    ?>
+                </tr>
+                <tr>
+                    <td style="background-color: yellow">
+                        Saturday
+                    </td>
+                    <?php
+                        createTable("3", "B", "5");
+                    ?>
+                </tr>
+                    </table>
+                    <h1>Fourth Year Sec A</h1>
+                <table>
+                    <tr class="head">
+                        <th rowspan="2">
+                            Day
+                        </th>
+                        <th colspan="10">
+                            Time
+                        </th>
+
+                    </tr>
+                    <tr  class="head-time">
+                        <th>
+                            08.30-09.30
+                        </th>
+                        <th>
+                            09.30-10.30
+                        </th>
+                        <th>
+                            10.30-11.30
+                        </th>
+                        <th>
+                            11.30-12.30
+                        </th>
+                        <th>
+                            12.30-13.30
+                        </th>
+                        <th>
+                            13.30-14.30
+                        </th>
+                        <th>
+                            14.30-15.30
+                        </th>
+                        <th>
+                            15.30-16.30
+                        </th>
+                        <th>
+                            16.30-17.30
+                        </th>
+                        <th>
+                            17.30-18.30
+                        </th>
+                    </tr>
+                    <tr>
+                    <td style="background-color: yellow">
+                        Monday
+                    </td>
+                    <?php
+                        createTable("4", "A", "0");
+                    ?>
+                </tr>
+                <tr>
+                    <td style="background-color: yellow">
+                        Tuesday
+                    </td>
+                    <?php
+                        createTable("4", "A", "1");
+                    ?>
+                </tr>
+                <tr>
+                    <td style="background-color: yellow">
+                        Wednesday
+                    </td>
+                    <?php
+                        createTable("4", "A", "2");
+                    ?>
+                </tr>
+                <tr>
+                    <td style="background-color: yellow">
+                        Thurday
+                    </td>
+                    <?php
+                        createTable("4", "A", "3");
+                    ?>
+                </tr>
+                <tr>
+                    <td style="background-color: yellow">
+                        Friday
+                    </td>
+                    <?php
+                        createTable("4", "A", "4");
+                    ?>
+                </tr>
+                <tr>
+                    <td style="background-color: yellow">
+                        Saturday
+                    </td>
+                    <?php
+                        createTable("4", "A", "5");
+                    ?>
+                </tr>
+                    </table>
+                    <h1>Fourth Year Sec B</h1>
+                <table>
+                    <tr class="head">
+                        <th rowspan="2">
+                            Day
+                        </th>
+                        <th colspan="10">
+                            Time
+                        </th>
+
+                    </tr>
+                    <tr  class="head-time">
+                        <th>
+                            08.30-09.30
+                        </th>
+                        <th>
+                            09.30-10.30
+                        </th>
+                        <th>
+                            10.30-11.30
+                        </th>
+                        <th>
+                            11.30-12.30
+                        </th>
+                        <th>
+                            12.30-13.30
+                        </th>
+                        <th>
+                            13.30-14.30
+                        </th>
+                        <th>
+                            14.30-15.30
+                        </th>
+                        <th>
+                            15.30-16.30
+                        </th>
+                        <th>
+                            16.30-17.30
+                        </th>
+                        <th>
+                            17.30-18.30
+                        </th>
+                    </tr>
+                    <tr>
+                    <td style="background-color: yellow">
+                        Monday
+                    </td>
+                    <?php
+                        createTable("4", "B", "0");
+                    ?>
+                </tr>
+                <tr>
+                    <td style="background-color: yellow">
+                        Tuesday
+                    </td>
+                    <?php
+                        createTable("4", "B", "1");
+                    ?>
+                </tr>
+                <tr>
+                    <td style="background-color: yellow">
+                        Wednesday
+                    </td>
+                    <?php
+                        createTable("4", "B", "2");
+                    ?>
+                </tr>
+                <tr>
+                    <td style="background-color: yellow">
+                        Thurday
+                    </td>
+                    <?php
+                        createTable("4", "B", "3");
+                    ?>
+                </tr>
+                <tr>
+                    <td style="background-color: yellow">
+                        Friday
+                    </td>
+                    <?php
+                        createTable("4", "B", "4");
+                    ?>
+                </tr>
+                <tr>
+                    <td style="background-color: yellow">
+                        Saturday
+                    </td>
+                    <?php
+                        createTable("4", "B", "5");
+                    ?>
+                </tr>
+                </table>
             
-            <tr>
-                <td rowspan='1'; style='background-color: yellow'>Monday</td>
-                    <?php
-                       ////
-                    ?>
-                    </td>
-                </tr>
-                <tr>
-                    <td rowspan='1'; style='background-color: pink' >Tuesday</td>
-                    <?php
-                        ////
-                    ?>
-                    </td>
-                </tr>
-                <tr>
-                    <td rowspan='1'; style='background-color: green' >Wedenday</td>
-                    <?php
-                        ////
-                    ?>
-                    </td>
-                </tr>
-                <tr>
-                    <td rowspan='1'; style='background-color: orange' >Thursday</td>
-                    <?php
-                        ////
-                    ?>
-                    </td>
-            </tr>
-            <tr>
-                <td rowspan='1'; style='background-color: blue' > Friday</td>
-                <?php
-                    ////
-                ?>
-                </td>
-            </tr>
-            <tr>
-                <td rowspan='1'; style='background-color: blue' >Satruday</td>
-                <?php
-                    ///
-                ?>
-                </td>
-           </tr>
-        </table>
+        </div>
     </body>
 </html>
 <?php
@@ -470,6 +1131,4 @@
             echo "<td style='background-color: wheat;' colspan='10-$total'></td>";
         }
     }
-    echo $_SESSION['x'];
-    session_destroy();
 ?>

@@ -237,9 +237,9 @@
 				color:#ececec;
 				background-color:#ff6c00;
 				border-radius: 8px;
-				font-family: 'Work Sans', sans-serif; 
-				font-size: 24px; 
+				font: 24px 'Work Sans', sans-serif; 
 				cursor: pointer;
+				text-align: center;
 			}
 			.fundamental:hover {
 				background-color: #79a2ff;

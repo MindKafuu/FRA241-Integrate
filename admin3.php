@@ -18,6 +18,7 @@
     <link rel="stylesheet" type="text/css" href="css/admin3-2.css">
     <link rel="stylesheet" type="text/css" href="css/admin3-3.css">
 
+
     <!--font-->
     <link href="https://fonts.googleapis.com/css?family=Anonymous+Pro|Work+Sans" rel="stylesheet">
 
@@ -28,11 +29,17 @@
         document.getElementById("knight").style.visibility="hidden";
     }
         function showt(){
-        document.getElementById("green").style.visibility="visible";//show dropdown
-        document.getElementById("knight").style.visibility="visible";//show dropdown
+            var y1 = document.getElementById("g1").value;
+        	  var y2 = document.getElementById("g2").value;
+        	  var y3 = document.getElementById("g3").value;
+            document.getElementById("green").style.visibility="visible";//show dropdown
+            document.getElementById("knight").style.visibility="visible";//show dropdown
+            if(y1=="" ||y3=="" ||y2=="" ){
+        		    alert("Box is empty!");
+        	}
 
     }
-    
+
     </script>
 
 
@@ -94,14 +101,28 @@
 
           <br><br>
           <div style="margin-top: -340px;margin-left:175px; line-height:1;">
-            <input type="text" class="whitetab" style= "margin-left: 20px; margin-top:22px" name="code" required><br><br><br>
-            <input type="text" name="subject_name"  class="whitetab" style= "margin-left: 20px" required><br><br><br>
-            <input type="text" name="lecturer"      class="whitetab" style= "margin-left: 20px"><br><br><br>
-            <input type="text" name="hours_per_week"class="whitetab" style= "margin-left: 20px" required><br><br><br>
+           <input id="g2" type="text" class="whitetab" style= "margin-left: 20px; margin-top:22px" name="code" required><br><br><br>
+            <input id="g3" type="text" name="subject_name"  class="whitetab" style= "margin-left: 20px" required><br><br><br>
+            <?php  $sql = "SELECT * FROM table_account";
+              $result = mysqli_query($con,$sql);
+              echo "<div style='margin-top:-10px; margin-left:-20px;'>";
+              echo "<select name='lecturer'>";
+              while ($row = mysqli_fetch_array($result)) {
+                echo "<option value='" . $row['teacher_name'] ."'>" . $row['teacher_name'] ."</option>";
+              }
+              echo "</select>";
+              echo "</div>";  ?>
+          <!--  <input type="text" name="lecturer"      class="whitetab" style= "margin-left: 20px"><br><br><br> -->
+            <br><br>
+            <input id="g1" type="text" name="hours_per_week"class="whitetab" style= "margin-left: 20px;" required><br><br><br>
+
+
           </div>
 
 
-          <button class="fundamental" onclick="showt()">Fundamental Subject</button>
+          <div>
+            <input class = "fundamental" type="botton" value="   Fundamental Subject" onclick="showt()">
+          </div>
 
           <br><br><br>
           <div style="margin-top: -250px;margin-left:130px">
@@ -117,7 +138,7 @@
         </div>
 
             </br> </br> </br>
-            <div style= "margin-top:90px" id="green">      
+            <div style= "margin-top:90px" id="green">
             <select name="subject_sec1">
             <option value="SEC">Sec</option>
             <option value="A">A</option>

@@ -32,7 +32,7 @@
         document.getElementById("knight").style.visibility="visible";//show dropdown
 
     }
-    
+
     </script>
   </head>
   <style>
@@ -77,28 +77,39 @@
             <a href="admin3-D.php" class="btn2"><b>Doctor's degree</b></a><br><br>
         </div>
         <div style="margin-top: -200px; margin-left: 400px">
-          
+
           <b style="font-family: 'Work Sans', sans-serif; font-size: 24px">Subject Code  </b>
           <br><br><br>
 
           <b style="font-family: 'Work Sans', sans-serif; font-size: 24px">Subject name </b>
           <br><br><br>
-          
+
           <b style="font-family: 'Work Sans', sans-serif; font-size: 24px">Lecturer  </b>
           <br><br><br>
-          
+
           <b style="font-family: 'Work Sans', sans-serif; font-size: 24px">Hours/week  </b>
           <br><br><br><br>
-          
+
           <br><br>
           <div style="margin-top: -340px;margin-left:175px; line-height:1;">
             <input type="text" class="whitetab" style= "margin-left: 20px; margin-top:22px" name="code" required><br><br><br>
             <input type="text" name="subject_name"  class="whitetab" style= "margin-left: 20px" required><br><br><br>
-            <input type="text" name="lecturer"      class="whitetab" style= "margin-left: 20px"><br><br><br>
+            <?php  $sql = "SELECT * FROM table_account";
+              $result = mysqli_query($con,$sql);
+              echo "<div style='margin-top:-10px; margin-left:-20px;'>";
+              echo "<select name='lecturer'>";
+              echo "<option>กูได้หน้า User แล้วโว้ยๆๆ</option>";
+              while ($row = mysqli_fetch_array($result)) {
+                echo "<option value='" . $row['teacher_name'] ."'>" . $row['teacher_name'] ."</option>";
+              }
+              echo "</select>";
+              echo "</div>";  ?>
+          <!--  <input type="text" name="lecturer"      class="whitetab" style= "margin-left: 20px"><br><br><br> -->
+            <br><br>
             <input type="text" name="hours_per_week"class="whitetab" style= "margin-left: 20px" required><br><br><br>
           </div>
-          
-          
+
+
           <button class="fundamental" onclick="showt()">Fundamental Subject</button>
           <br><br><br>
           <div style="margin-top: -250px;margin-left:130px">
@@ -112,9 +123,9 @@
             </a>
         </div>
         </div>
- 
-            </br> </br> </br> 
-            <div style= "margin-top:90px" id="green">      
+
+            </br> </br> </br>
+            <div style= "margin-top:90px" id="green">
             <select name="subject_sec1">
             <option value="SEC">Sec</option>
             <option value="A">A</option>

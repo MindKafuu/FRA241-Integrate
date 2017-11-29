@@ -43,6 +43,7 @@ var y;
 
              function labelfng(){
                 y = document.getElementById("labelfn").value;
+                //document.getElementById("gs").style.visibility="hidden";
                     if(y==1){
                         var green = '<select name="period" ><option value="1">1</option>';
                         document.getElementById("gB").innerHTML=green;
@@ -134,9 +135,11 @@ var y;
       </div><br><br>
     
         <div style="margin-top:-30px; margin-left:550px" class = "buttonchoose">
-            <input style="font-size: 17px; font-family: 'Work Sans', sans-serif" class = "content" type="button" value="choose" onclick="labelfng()">
-        </div><br><br>
-        
+            <input style="font-size: 17px; font-family: 'Work Sans', sans-serif" type="button" value="choose" onclick="labelfng()">
+        </div>
+        <p style =" font-family: 'Work Sans', sans-serif; font-size: 24px"> <b> Split period:   </b>   </p>
+        <div style="margin-top:-10px; margin-left:170px" id="gB"></div><br>
+        <br>
         <p style =" font-family: 'Work Sans', sans-serif; font-size: 24px"> <b> Sec:  </b> </p>
         
         <div style="margin-top:-33px; margin-left:25px"> 
@@ -146,18 +149,15 @@ var y;
             <option value="2">B</option>
             <option value="3">A+B</option>
           </select>
+        
+        
+          <div  style =" margin-left:500px; " class = "buttonchoose">
+                <input  style="font-size: 17px; font-family: 'Work Sans', sans-serif" type="button" value="complete" onclick="myFunction()" >
+          </div>
 
-        <div style =" margin-left:550px; margin-top: 10px; font-size: 17px; font-family: 'Work Sans', sans-serif">
-        <button onclick="myFunction()"  class = "buttonsave">
-            <span class = "content">SAVE</span>   <!--ปุ่มซับมิท-->
         </div>
 
-        </div>
-
-        <div style="margin-top:-50px; margin-left:230px">
-        <p style =" font-family: 'Work Sans', sans-serif; font-size: 24px"> <b> Split period:   </b>   </p>
-        <div id="gB"></div>
-        </div>
+        
         
         <div style="margin-top:50px; margin-left:0px">
         <p style =" font-family: 'Work Sans', sans-serif; font-size: 24px"> <b> Room:   </b>   </p>
@@ -178,10 +178,11 @@ var y;
         </div>
           
     </b>
-          <div onclick="myFunction()" style =" margin-left:700px; margin-top: 100px; font-size: 24px; font-family: 'Work Sans', sans-serif">
-          <a href="#" class = "buttoncomplete">
-            <span class = "content">Complete</span> 
-        </a></div>
+         
+        <div style =" margin-left:550px; margin-top: 10px; font-size: 17px; font-family: 'Work Sans', sans-serif">
+        <button onclick="myFunction()"  class = "buttonsave">
+            <span class = "content">SAVE</span>   <!--ปุ่มซับมิท-->
+        </div>
         
   </body>
 </html>

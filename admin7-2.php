@@ -1,5 +1,7 @@
 <?php
       require 'dbconfig/config.php';         //page9-2.php
+      ob_start();
+      session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -99,9 +101,11 @@
                 </li>
             </ul>
 </div></br></br>
-        <div  style="margin-top: -300px; margin-left: 320px" class="show">
+        <div  style="margin-top: -250px; margin-left: 320px" class="show">
         <h1>TEACHER</h1>
+        <form action='admin7-2.php' method='post'>
         <table>
+
             <tr class="head">
                 <th rowspan="1">
                     Number
@@ -113,27 +117,53 @@
             </tr>
             
             <?php
-            $x = 0;
-                $sql = "SELECT * FROM table_account";
+                $x = 0;
+                $teacher = "teacher$x";
+                $sql = "SELECT DISTINCT teacher_name AS Teacher FROM table_account";
                 $smyData = mysqli_query($con, $sql);
                 while($row = mysqli_fetch_array($smyData)) {
                     $x++;
-                    $teacher = "teacher".$x;
                     echo "<tr class='data'>";
                     echo "<td>";
                     echo $x;
                     echo "</td>";
                     echo "<td>";
-                    echo "<button name='$teacher' class='data-button'>".$row['teacher_name']."</button>";
+                    echo "<input type='submit' name='$teacher' onClick='a(this.id)' id='$x' class='data-button' value='$x'>".$row['Teacher'];
+                    //$value = $row[$teacher];
                     echo "</td>";
-                    echo "</tr>";
+                    echo "</tr>";    
                 }
-                if(isset($_POST['teacher1'])) {
-                    header('location:admin7-3.php');
-                }
-                
+                //if(isset($_GET['teacher'])) {
+                // if(isset($_POST[$teacher])) {
+                    function a ($a){
+                     $_SESSION['x'] = $this;
+                //      //$_SESSION['test'] = $_SESSION['value'];
+                     header('location:admin7-3.php');
+                // }
+            }
+
             ?>
+            <script type="text/javascript"> 
+            var test1 =0;
+                function reply_click(clicked_id)
+                {
+                    //test1 = clicked_id;
+                    var newUrl  = "admin7-3.php";
+                    window.location = newUrl;
+                    test();
+                    // window.location="admin7-3.php"
+                    // var id = clicked_id;
+                    // window.location.href = "myphpfile.php?name=" + clicked_id; 
+                 
+                }
+            </script>    
+                 <?php
+                  function test(){
+                  $_SESSION['x'] = $_GET['test1']; 
+                  header('location:admin7-3.php');}
+                  ?>
             </table>
+            </form>
         </div>
 
   </body>

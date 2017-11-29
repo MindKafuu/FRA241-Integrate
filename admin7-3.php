@@ -1,5 +1,6 @@
 <?php
       require 'dbconfig/config.php';
+      session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -469,4 +470,6 @@
             echo "<td style='background-color: wheat;' colspan='10-$total'></td>";
         }
     }
+    echo $_SESSION['x'];
+    session_destroy();
 ?>

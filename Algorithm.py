@@ -3,7 +3,7 @@ import pymysql
 def call_data():
 
 	#------------------------------------------------------------------------------#
-
+	num = 0
 	teacher_name = []
 	try:
 		conn = pymysql.connect(host='localhost', user='root', db='schedule')
@@ -29,7 +29,7 @@ def call_data():
 	#	print (i)
 
 	#------------------------------------------------------------------------------#
-
+	num = 0
 	teacher_busy = [[]for i in range(len(teacher_name))]
 	try:
 		conn = pymysql.connect(host='localhost', user='root', db='schedule')
@@ -57,13 +57,18 @@ def call_data():
 	#	print (i)
 
 	#------------------------------------------------------------------------------#
-
+	num = 0
+	num1 = 0
+	data = []
 	subject_description = []
 	try:
 		conn = pymysql.connect(host='localhost', user='root', db='schedule')
 		cur = conn.cursor()
 
 		try:
+			sql ='SELECT * FROM `table_subject_description_output` ORDER BY `table_subject_description_output`.`subject_code` ASC'
+			num = cur.execute(sql)
+
 			sql ='SELECT * FROM `table_subject_description_input`'
 			num = cur.execute(sql)
 			#print ("num: ",num)
@@ -85,14 +90,13 @@ def call_data():
 
 	for i in data:
 		sub = []
-		check = 0
-		teacher = "teacher"
+		teacher = ""
 		for o in data1:
 			if i[2] == o[2]:
-				check += 1
-				teacher = o[1]
-		if check > 1: 
-			teacher = "many teacher"
+				teacher = teacher + o[1] + ","
+				#print (o[1]+"_"+o[2])
+		if teacher == "":
+			teacher = "teacher,"
 		sub.append(i[2])
 		sub.append(i[1])
 		sub.append(teacher)
@@ -104,7 +108,7 @@ def call_data():
 	#	print (i)
 
 	#------------------------------------------------------------------------------#
-
+	num = 0
 	center_subject = []
 	try:
 		conn = pymysql.connect(host='localhost', user='root', db='schedule')
@@ -148,7 +152,7 @@ def call_data():
 	#	print (i)
 
 	#------------------------------------------------------------------------------#
-
+	num = 0
 	room_code = []
 	try:
 		conn = pymysql.connect(host='localhost', user='root', db='schedule')
@@ -308,40 +312,48 @@ def save_output(output):
 			set_data.append(split_data)
 			#print (split_data)
 
-	conn = pymysql.connect(host='localhost', user='root', db='schedule')
-	cur = conn.cursor()
-	
-	sql = "DROP TABLE IF EXISTS `table_subject_description_output`"
-	cur.execute(sql)
-	
-	sql = """CREATE TABLE IF NOT EXISTS `table_subject_description_output` (
-	  `No` int(100) NOT NULL,
-	  `subject_level` varchar(100) NOT NULL,
-	  `subject_code` varchar(100) NOT NULL,
-	  `subject_room` varchar(100) NOT NULL,
-	  `subject_hour_per_week` varchar(100) NOT NULL,
-	  `subject_hour_per_day` varchar(100) NOT NULL,
-	  `subject_sec` varchar(100) NOT NULL,
-	  `Day` varchar(100) NOT NULL,
-	  `start_time` varchar(100) NOT NULL
-	) ENGINE=InnoDB DEFAULT CHARSET=utf8;"""
-	cur.execute(sql)
+	try:
+		conn = pymysql.connect(host='localhost', user='root', db='schedule')
+		cur = conn.cursor()
 
-	for i in set_data:
-		No = i[0]
-		subject_level = i[1]
-		subject_code = i[2]
-		subject_room = i[3]
-		subject_hour_per_week = i[4]
-		subject_hour_per_day = i[5]
-		subject_sec = i[6]
-		Day = i[7]
-		start_time = i[8]
-		sql = """INSERT INTO `table_subject_description_output` (`No`, `subject_level`, `subject_code`, `subject_room`, `subject_hour_per_week`, `subject_hour_per_day`, `subject_sec`, `Day`, `start_time`)
-				VALUES ('%s','%s','%s','%s','%s','%s','%s','%s','%s')""" %(No,subject_level,subject_code,subject_room,subject_hour_per_week,subject_hour_per_day,subject_sec,Day,start_time)
-		cur.execute(sql)
-	conn.commit()
-	conn.close()
+		try:
+			sql = "DROP TABLE IF EXISTS `table_subject_description_output`"
+			cur.execute(sql)
+	
+			sql = """CREATE TABLE IF NOT EXISTS `table_subject_description_output` (
+			  `No` int(100) NOT NULL,
+			  `subject_level` varchar(100) NOT NULL,
+			  `subject_code` varchar(100) NOT NULL,
+			  `subject_room` varchar(100) NOT NULL,
+			  `subject_hour_per_week` varchar(100) NOT NULL,
+			  `subject_hour_per_day` varchar(100) NOT NULL,
+			  `subject_sec` varchar(100) NOT NULL,
+			  `Day` varchar(100) NOT NULL,
+			  `start_time` varchar(100) NOT NULL
+			) ENGINE=InnoDB DEFAULT CHARSET=utf8;"""
+			cur.execute(sql)
+
+			for i in set_data:
+				No = i[0]
+				subject_level = i[1]
+				subject_code = i[2]
+				subject_room = i[3]
+				subject_hour_per_week = i[4]
+				subject_hour_per_day = i[5]
+				subject_sec = i[6]
+				Day = i[7]
+				start_time = i[8]
+				sql = """INSERT INTO `table_subject_description_output` (`No`, `subject_level`, `subject_code`, `subject_room`, `subject_hour_per_week`, `subject_hour_per_day`, `subject_sec`, `Day`, `start_time`)
+						VALUES ('%s','%s','%s','%s','%s','%s','%s','%s','%s')""" %(No,subject_level,subject_code,subject_room,subject_hour_per_week,subject_hour_per_day,subject_sec,Day,start_time)
+				cur.execute(sql)
+			conn.commit()
+			conn.close()
+
+		except:
+			print ('Error')
+
+	except pymysql.Error:
+		print ('Connection Failed!!')
 
 def print_timetable(table,name):
 	s = "   |   "
@@ -368,22 +380,24 @@ def print_timetable(table,name):
 		#print ("|-----|------------|------------|------------|------------|------------|------------|------------|------------|------------|------------|")
 		print ("\n")
 def sub_do_not_use_this_time(i,subject_description,teacher_name,timetable_teacher,room_code,
-							timetable_room,MIX_SCHEDULE,timetable,subject_do_not_use_this_time = None):
+							timetable_room,MIX_SCHEDULE,timetable):
 	subject_do_not_use_this_time = []
 	subject = subject_description[i]
+	all_teacher = subject[2].split(",")
 	FREE = "      "
 	#Check from teacher
 	for a in range(len(teacher_name)):
-		if subject[2] == teacher_name[a]:
-			for o in range(5):
-				for u in range(10):
-					if timetable_teacher[a][o][u] != FREE:
-						check = 0
-						for e in subject_do_not_use_this_time:
-							if e == timetable[o][u]:
-								check = 1
-						if check == 0:
-							subject_do_not_use_this_time.append(timetable[o][u])
+		for b in range(len(all_teacher)-1): 
+			if all_teacher[b] == teacher_name[a]:
+				for o in range(5):
+					for u in range(10):
+						if timetable_teacher[a][o][u] != FREE:
+							check = 0
+							for e in subject_do_not_use_this_time:
+								if e == timetable[o][u]:
+									check = 1
+							if check == 0:
+								subject_do_not_use_this_time.append(timetable[o][u])
 	
 	#Check from MIX_SCHEDULE
 	level = subject[1]
@@ -399,6 +413,10 @@ def sub_do_not_use_this_time(i,subject_description,teacher_name,timetable_teache
 	elif level == "4":
 		A = MIX_SCHEDULE[6]
 		B = MIX_SCHEDULE[7]
+	elif level == "M":
+		C = MIX_SCHEDULE[8]
+	elif level == "D":
+		C = MIX_SCHEDULE[9]
 
 	for o in range(5):
 		for u in range(10):
@@ -412,6 +430,8 @@ def sub_do_not_use_this_time(i,subject_description,teacher_name,timetable_teache
 				elif subject[4] == "AA" and A[o][u] != FREE:
 					subject_do_not_use_this_time.append(timetable[o][u])
 				elif subject[4] == "BB" and B[o][u] != FREE:
+					subject_do_not_use_this_time.append(timetable[o][u])
+				elif subject[4] == "CC" and C[o][u] != FREE:
 					subject_do_not_use_this_time.append(timetable[o][u])
 	
 	#Check from room_code
@@ -434,6 +454,7 @@ def sub_do_not_use_this_time(i,subject_description,teacher_name,timetable_teache
 def manage_schedule(i,subject_description,teacher_name,timetable_teacher,room_code,
 					timetable_room,MIX_SCHEDULE,timetable,subject_do_not_use_this_time = None):
 	subject = subject_description[i]
+	all_teacher = subject[2].split(",")
 	level = subject[1]
 	sec  = subject[4]
 	subject_do_not_use_this_time = []
@@ -443,6 +464,7 @@ def manage_schedule(i,subject_description,teacher_name,timetable_teacher,room_co
 	hr_1 = [["1"],["2"],["3"],["5"],["6"],["7"],["8"]]
 	hr_2 = [["0","1"],["1","2"],["2","3"],["5","6"],["6","7"],["7","8"]]
 	hr_3 = [["1","2","3"],["5","6","7"],["6","7","8"]]
+	hr_3_1 = [["0","1","2"],["4","5","6"],["5","6","7"],["6","7","8"]]
 
 	if level == "1":
 		A = 0
@@ -456,6 +478,10 @@ def manage_schedule(i,subject_description,teacher_name,timetable_teacher,room_co
 	elif level == "4":
 		A = 6
 		B = 7
+	elif level == "M":
+		C = 8
+	elif level == "D":
+		C = 9
 
 	#Update MIX_SCHEDULE
 	if len(subject[3]) == 1:
@@ -465,12 +491,31 @@ def manage_schedule(i,subject_description,teacher_name,timetable_teacher,room_co
 
 	for t in range(len(T)):
 		finish = 0
+		check_freeday = 0
 		while finish != 5:
+			#print (all_teacher)
 			subject_do_not_use_this_time = sub_do_not_use_this_time(i,subject_description,teacher_name,timetable_teacher,room_code,
-																	timetable_room,MIX_SCHEDULE,timetable,subject_do_not_use_this_time)
+																	timetable_room,MIX_SCHEDULE,timetable)
 			FREE_TIME = [[],[],[],[],[]]
-			#print (str(t)+"_"+subject[0])
-			#print (subject_do_not_use_this_time)
+
+			#print (str(t)+"_"+subject[0]+"_"+sec)
+
+			"""if finish == 1 or finish == 2 :
+				for b in range(len(all_teacher)-1):
+					for a in range(len(teacher_name)):
+						if all_teacher[b] == teacher_name[a]:
+							print (teacher_name[a])
+							print ("\n")
+							print (timetable_teacher[a])
+							print ("\n\n")
+				print (subject_do_not_use_this_time)
+
+			if all_teacher == ["Mr.Bawornsak Sakulkueakulsuk",""]:
+				for a in range(len(teacher_name)):
+					if all_teacher[0]==teacher_name[a]:
+						print (subject_do_not_use_this_time)
+						print (timetable_teacher[a])"""
+
 			for o in range(len(FREE_TIME)):
 				for u in range(10):
 					FREE_TIME[o].append(timetable[o][u])
@@ -484,7 +529,7 @@ def manage_schedule(i,subject_description,teacher_name,timetable_teacher,room_co
 			FREE_TIME_GROUP = [[],[],[],[],[]]
 			for o in range(len(FREE_TIME)):
 				if T[t] == "1":
-					for u in range(0,len(FREE_TIME[o])):
+					for u in range(len(FREE_TIME[o])):
 						split = []
 						split.append(FREE_TIME[o][u][1])
 						FREE_TIME_SPRIT[o].append(split)
@@ -498,9 +543,15 @@ def manage_schedule(i,subject_description,teacher_name,timetable_teacher,room_co
 											check = 1
 									if check == 0:
 										FREE_TIME_GROUP[u].append(v)
+						if check_freeday == 0 and sec == "AA":
+							if len(FREE_TIME_GROUP[u]) <= 2:
+								FREE_TIME_GROUP[u] = []
+						elif check_freeday == 0 and sec == "BB":
+							if len(FREE_TIME_GROUP[u]) <= 1:
+								FREE_TIME_GROUP[u] = []
 
 				elif T[t] == "2":
-					for u in range(0,len(FREE_TIME[o])-1):
+					for u in range(len(FREE_TIME[o])-1):
 						split = []
 						split.append(FREE_TIME[o][u][1])
 						split.append(FREE_TIME[o][u+1][1])
@@ -517,7 +568,7 @@ def manage_schedule(i,subject_description,teacher_name,timetable_teacher,room_co
 										FREE_TIME_GROUP[u].append(v)
 
 				elif T[t] == "3":
-					for u in range(0,len(FREE_TIME[o])-2):
+					for u in range(len(FREE_TIME[o])-2):
 						split = []
 						split.append(FREE_TIME[o][u][1])
 						split.append(FREE_TIME[o][u+1][1])
@@ -533,6 +584,12 @@ def manage_schedule(i,subject_description,teacher_name,timetable_teacher,room_co
 											check = 1
 									if check == 0:
 										FREE_TIME_GROUP[u].append(v)
+						if check_freeday == 0 and sec == "AA":
+							if len(FREE_TIME_GROUP[u]) < 3:
+								FREE_TIME_GROUP[u] = []
+						elif check_freeday == 0 and sec == "BB":
+							if len(FREE_TIME_GROUP[u]) < 2:
+								FREE_TIME_GROUP[u] = []
 
 			for a in range(len(FREE_TIME_GROUP)):
 				for o in range(len(FREE_TIME_GROUP[a])):
@@ -546,12 +603,23 @@ def manage_schedule(i,subject_description,teacher_name,timetable_teacher,room_co
 					num_day.append(z)
 
 			subject_time = []
-			if len (num_day) != 0 and t == 0:
+			if len (num_day) != 0 and sec == "AB":
+				subject_time = FREE_TIME_GROUP[num_day[len(num_day)-1]][0]
+			elif len (num_day) != 0 and t == 0:
 				subject_time = FREE_TIME_GROUP[num_day[0]][0]
 			elif len (num_day) != 0 and t == 1:
 				subject_time = FREE_TIME_GROUP[num_day[len(num_day)-1]][0]
 			else:
 				pass
+
+			if finish == 1 or finish == 3:
+				for b in range(len(all_teacher)-1):
+					for a in range(len(teacher_name)):
+						if all_teacher[b] == teacher_name[a]:
+							for e in case1[b]:
+								x = int(e[0])
+								y = int(e[1])
+								timetable_teacher[a][x][y] = "_BUSY_"
 
 			#print (subject_time)
 			if subject_time != []:
@@ -569,35 +637,34 @@ def manage_schedule(i,subject_description,teacher_name,timetable_teacher,room_co
 						MIX_SCHEDULE[A][o][u] = subject[0]
 					elif sec == "BB":
 						MIX_SCHEDULE[B][o][u] = subject[0]
+					elif sec == "CC":
+						MIX_SCHEDULE[C][o][u] = subject[0]
 					#Update timetable_teacher
-					if finish == 1 or finish == 3:
-						for a in range(len(teacher_name)):
-							if subject[2] == teacher_name[a]:
-								for e in case1:
-									x = int(e[0])
-									y = int(e[1])
-									timetable_teacher[a][x][y] = "_BUSY_"
-					for e in range(len(teacher_name)):
-						if subject[2] == teacher_name[e]:
-							timetable_teacher[e][o][u] = subject[0]
+					for a in range(len(teacher_name)):
+						for b in range(len(all_teacher)-1): 
+							if all_teacher[b] == teacher_name[a]:
+								timetable_teacher[a][o][u] = subject[0]
 					#Update timetable_room
 					for e in range(len(room_code)):
 						if subject[5] == room_code[e]:
 							timetable_room[e][o][u] = subject[0]
 					finish = 5
+			elif check_freeday == 0:
+				check_freeday = 1
 			else:
 				if finish == 0:
 					#print ("case 1")
-					case1 = []
-					for a in range(len(teacher_name)):
-						if subject[2] == teacher_name[a]:
-							for o in range(5):
-								for u in range(10):
-									if timetable_teacher[a][o][u] == "_BUSY_":
-										timetable_teacher[a][o][u] = FREE
-										case1.append(timetable[o][u])
-				
-				elif finish == 1 :
+					case1 = [[]for d in range(len(all_teacher)-1)]
+					for b in range(len(all_teacher)-1):
+						for a in range(len(teacher_name)):
+							if all_teacher[b] == teacher_name[a]:
+								for o in range(5):
+									for u in range(10):
+										if timetable_teacher[a][o][u] == "_BUSY_":
+											timetable_teacher[a][o][u] = FREE
+											case1[b].append(timetable[o][u])
+
+				elif finish == 1:
 					#print ("case 2")
 					hr_1.append(["0"])
 					hr_2.append(["8","9"])
@@ -606,12 +673,16 @@ def manage_schedule(i,subject_description,teacher_name,timetable_teacher,room_co
 				
 				elif finish == 2:
 					#print ("case 3")
-					for a in range(len(teacher_name)):
-						if subject[2] == teacher_name[a]:
-							for e in case1:
-								x = int(e[0])
-								y = int(e[1])
-								timetable_teacher[a][x][y] = FREE
+					for b in range(len(all_teacher)-1):
+						for a in range(len(teacher_name)):
+							if all_teacher[b] == teacher_name[a]:
+								for e in case1[b]:
+									x = int(e[0])
+									y = int(e[1])
+									timetable_teacher[a][x][y] = FREE
+				elif finish == 3:
+					#print (subject[0]+"_Error")
+					pass
 				finish += 1
 
 	return ([MIX_SCHEDULE,subject_description,timetable_teacher,timetable_room])
@@ -648,8 +719,8 @@ def schedule(data):
 	
 	#subject_do_not_use_this_time = [[]for i in range(len(subject_description))]
 
-	MIX_SCHEDULE_KEY = ["1_secA","1_secB","2_secA","2_secB","3_secA","3_secB","4_secA","4_secB"]
-	MIX_SCHEDULE = [[[FREE] * 10 for i in range(5)]for i in range(8)]
+	MIX_SCHEDULE_KEY = ["B1_secA","B1_secB","B2_secA","B2_secB","B3_secA","B3_secB","B4_secA","B4_secB","Master","Doctorate"]
+	MIX_SCHEDULE = [[[FREE] * 10 for i in range(5)]for i in range(10)]
 	
 	#Update MIX_SCHEDULE with MONDAY_PM
 	for i in range(len(MIX_SCHEDULE)):
@@ -698,6 +769,12 @@ def schedule(data):
 					MIX_SCHEDULE[6][o][u] = center_subject[i][0]
 				elif center_sub_sec == "BB":
 					MIX_SCHEDULE[7][o][u] = center_subject[i][0]
+
+			elif center_sub_level == "M":
+					MIX_SCHEDULE[8][o][u] = center_subject[i][0]
+
+			elif center_sub_level == "D":
+					MIX_SCHEDULE[9][o][u] = center_subject[i][0]
 
 	#find posititon of priority_room
 	priority_room = ["FB306","FB401","FB402","FB403-4"]
@@ -766,23 +843,8 @@ def schedule(data):
 		timetable_teacher = manage[2]
 		timetable_room = manage[3]
 
-	for i in FB306_AB_sub:
-		manage = manage_schedule(i,subject_description,teacher_name,timetable_teacher,room_code,
-								timetable_room,MIX_SCHEDULE,timetable)
-		MIX_SCHEDULE = manage[0]
-		subject_description = manage[1]
-		timetable_teacher = manage[2]
-		timetable_room = manage[3]
-
 	for i in FB401_AA_BB_sub:
-		manage = manage_schedule(i,subject_description,teacher_name,timetable_teacher,room_code,
-								timetable_room,MIX_SCHEDULE,timetable)
-		MIX_SCHEDULE = manage[0]
-		subject_description = manage[1]
-		timetable_teacher = manage[2]
-		timetable_room = manage[3]
 
-	for i in FB401_AB_sub:
 		manage = manage_schedule(i,subject_description,teacher_name,timetable_teacher,room_code,
 								timetable_room,MIX_SCHEDULE,timetable)
 		MIX_SCHEDULE = manage[0]
@@ -798,7 +860,7 @@ def schedule(data):
 		timetable_teacher = manage[2]
 		timetable_room = manage[3]
 
-	for i in FB402_AB_sub:
+	for i in FB403_4_AA_BB_sub:
 		manage = manage_schedule(i,subject_description,teacher_name,timetable_teacher,room_code,
 								timetable_room,MIX_SCHEDULE,timetable)
 		MIX_SCHEDULE = manage[0]
@@ -806,7 +868,25 @@ def schedule(data):
 		timetable_teacher = manage[2]
 		timetable_room = manage[3]
 
-	for i in FB403_4_AA_BB_sub:
+	#-----------------------------------------------------------------------------------------------#
+
+	for i in FB306_AB_sub:
+		manage = manage_schedule(i,subject_description,teacher_name,timetable_teacher,room_code,
+								timetable_room,MIX_SCHEDULE,timetable)
+		MIX_SCHEDULE = manage[0]
+		subject_description = manage[1]
+		timetable_teacher = manage[2]
+		timetable_room = manage[3]
+
+	for i in FB401_AB_sub:
+		manage = manage_schedule(i,subject_description,teacher_name,timetable_teacher,room_code,
+								timetable_room,MIX_SCHEDULE,timetable)
+		MIX_SCHEDULE = manage[0]
+		subject_description = manage[1]
+		timetable_teacher = manage[2]
+		timetable_room = manage[3]
+
+	for i in FB402_AB_sub:
 		manage = manage_schedule(i,subject_description,teacher_name,timetable_teacher,room_code,
 								timetable_room,MIX_SCHEDULE,timetable)
 		MIX_SCHEDULE = manage[0]
@@ -821,6 +901,8 @@ def schedule(data):
 		subject_description = manage[1]
 		timetable_teacher = manage[2]
 		timetable_room = manage[3]
+
+	#-----------------------------------------------------------------------------------------------#
 
 	for i in ANOTHER_ROOM_AA_BB_sub:
 		manage = manage_schedule(i,subject_description,teacher_name,timetable_teacher,room_code,
@@ -837,6 +919,8 @@ def schedule(data):
 		subject_description = manage[1]
 		timetable_teacher = manage[2]
 		timetable_room = manage[3]
+
+	#-----------------------------------------------------------------------------------------------#
 
 	#show schedule
 	#print_timetable(MIX_SCHEDULE,MIX_SCHEDULE_KEY)
@@ -893,29 +977,33 @@ def schedule(data):
 		
 		#subject_description = data[2]
 		[
-		["FRA141","1","Dr.Warasinee Chaisangmongkon",      "2/2","AA","FB306"],
-		["FRA141","1","Mr.Bawornsak Sakulkueakulsuk",      "2/2","BB","FB306"],
-		["FRA161","1","Dr.Prakarnkiat Youngkong",          "3/1","AA","FB403-4"],
-		["FRA161","1","Asst.Prof.Dr.Eakkachai Pengwang",   "3/1","BB","FB301"],
-		["FRA221","2","Dr.Pitiwut Teerakittikul",          "3","AA","FB306"],
-		["FRA221","2","Dr.Pitiwut Teerakittikul",          "3","BB","FB306"],
-		["FRA222","2","Asst. Prof. Dr.Thavida Maneewarn",  "3","AA","FB301"],
-		["FRA222","2","Asst. Prof. Dr.Thavida Maneewarn",  "3","BB","FB301"],
-		["FRA231","2","Asst.Prof.Dr.Eakkachai Pengwang",   "3","AB","FB403-4"],
-		["FRA241","2","Mr.Bawornsak Sakulkueakulsuk",      "3","AB","FB401"],
-		["FRA261","2","Dr.Pitiwut Teerakittikul",          "3","AA","FB306"],
-		["FRA261","2","Dr.Pitiwut Teerakittikul",          "3","BB","FB306"],
-		["FRA321","3","Dr.Suriya Natsupakpong",            "3","AA","FB304"],
-		["FRA321","3","Mr.Worawit Panpanytep",             "3","BB","FB304"],
-		["FRA331","3","Mr.Thanacha Choopojcharoen",        "3","AA","FB304"],
-		["FRA331","3","Mr.Thanacha Choopojcharoen",        "3","BB","FB305"],
-		["FRA332","3","Dr.Arbtip Dheeravongkit",           "3","AA","FB305"],
-		["FRA332","3","Asst.Prof.Dr.Eakkachai Pengwang",   "3","BB","FB305"],
-		["FRA341","3","Dr.Pornpoj",                        "3","AA","FB301"],
-		["FRA341","3","Dr.Pornpoj",                        "3","BB","FB301"],
-		["FRA361","3","Mr.Narongsak",                      "3","AB","FB401"],
-		["FRA451","4","Dr.Boontariga Kasemsontitum",       "3","AB","FB306"],
-		["FRA452","4","Dr.Supachai Vongbunyong",           "3","AB","FB305"]
+		["FRA141","1","Dr.Warasinee Chaisangmongkon,",      "2/2","AA","FB306"],
+		["FRA141","1","Mr.Bawornsak Sakulkueakulsuk,",      "2/2","BB","FB306"],
+		["FRA161","1","Dr.Prakarnkiat Youngkong,",          "3/1","AA","FB403-4"],
+		["FRA161","1","Asst.Prof.Dr.Eakkachai Pengwang,",   "3/1","BB","FB301"],
+		["FRA221","2","Dr.Pitiwut Teerakittikul,",          "3","AA","FB306"],
+		["FRA221","2","Dr.Pitiwut Teerakittikul,",          "3","BB","FB306"],
+		["FRA222","2","Asst. Prof. Dr.Thavida Maneewarn,",  "3","AA","FB301"],
+		["FRA222","2","Asst. Prof. Dr.Thavida Maneewarn,",  "3","BB","FB301"],
+		["FRA231","2","Asst.Prof.Dr.Eakkachai Pengwang,",   "3","AB","FB403-4"],
+		["FRA241","2","Mr.Bawornsak Sakulkueakulsuk,",      "3","AB","FB401"],
+		["FRA261","2","Dr.Pitiwut Teerakittikul,",          "3","AA","FB306"],
+		["FRA261","2","Dr.Pitiwut Teerakittikul,",          "3","BB","FB306"],
+		["FRA321","3","Dr.Suriya Natsupakpong,",            "3","AA","FB304"],
+		["FRA321","3","Mr.Worawit Panpanytep,",             "3","BB","FB304"],
+		["FRA331","3","Mr.Thanacha Choopojcharoen,",        "3","AA","FB305"],
+		["FRA331","3","Mr.Thanacha Choopojcharoen,",        "3","BB","FB305"],
+		["FRA332","3","Dr.Arbtip Dheeravongkit,",           "3","AA","FB305"],
+		["FRA332","3","Asst.Prof.Dr.Eakkachai Pengwang,",   "3","BB","FB305"],
+		["FRA341","3","Dr.Pornpoj,",                        "3","AA","FB301"],
+		["FRA341","3","Dr.Pornpoj,",                        "3","BB","FB301"],
+		["FRA361","3","Mr.Narongsak,",                      "3","AB","FB401"],
+		["FRA451","4","Dr.Boontariga Kasemsontitum,Dr.Suriya Natsupakpong,",       "3","AB","FB306"],
+		["FRA452","4","Dr.Supachai Vongbunyong,",           "3","AB","FB305"],
+		["FRA522","M","Dr.Orapadee Joochim,",           	"3","CC","FB301"],
+		["FRA543","M","Dr.Supachai Vongbunyong,",           "3/1","CC","FB304"],
+		["FRA621","D","Dr.Orapadee Joochim,",           	"3/1","CC","FB305"],
+		["FRA641","D","Assoc. Prof. Dr.Siam Charoenseang",  "3","CC","FB304"],
 		],
 		
 		#center_subject = data[3]
@@ -931,6 +1019,7 @@ def schedule(data):
 		["MTH201","2","AB",["25","26","27","47"]],
 		["LNG103","3","AB",["31","32","33"]]
 		],
+
 		#room = data[4]
 		[
 		"FB301",
@@ -945,4 +1034,5 @@ def schedule(data):
 data = call_data()
 output = schedule(data)
 save_output(output)
-print ("Finish :D")
+#print ("Finish :D")
+

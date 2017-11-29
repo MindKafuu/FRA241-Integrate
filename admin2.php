@@ -36,6 +36,15 @@
         $("q").show();
     });
     });
+    $(document).ready(function(){
+    $("q1").hide();
+    $("#hide1").click(function(){
+        $("q1").hide();
+    });
+    $("#show1").click(function(){
+        $("q1").show();
+    });
+    });
     </script>
   <style>
     body {
@@ -86,22 +95,46 @@
         <div  style='margin-top:-85px; margin-left:100px;border-radius: 6px; background-color:white; height:135px ; width: 550px'>
 
                 <b style =" margin-left:70px; font-family: 'Work Sans', sans-serif; font-size: 16px ">Name</b>
-                <input class="whitetab" style ="width:350px; height:23px; margin-top:5px; margin-left:55px" name="name" type="text" placeholder="Name"><!-- link data base -->
+                <input style ="width:350px; height:23px; margin-top:5px; margin-left:55px" name="name" type="text" placeholder="Name"><!-- link data base -->
                 <br>
 
                 <img src='images/user.png' ALIGN = "MIDDLE" width="60" height="70" >
 
                 <b style ="font-family: 'Work Sans', sans-serif; font-size: 16px" >Username</b>
-                <input class="whitetab" style ="width:350px; height:23px; margin-left:25px" name="username" type="text" placeholder="E-mail"><!-- link data base -->
+                <input style ="width:350px; height:23px; margin-left:25px" name="username" type="text" placeholder="E-mail"><!-- link data base -->
                 <br>
-                <b style ="margin-left:66px; font-family: 'Work Sans', sans-serif; font-size: 16px ">Password</b>
-                <input class="whitetab" style ="width:350px; height:23px; margin-left:23px" name="password" type="text" placeholder="Password"><!-- link data base -->
-
-
+                <b style ="margin-left:70px; font-family: 'Work Sans', sans-serif; font-size: 16px ">Password</b>
+                <input style ="width:350px; height:23px; margin-left:25px" name="password" type="text" placeholder="Password"><!-- link data base -->
         </div>
+        
         </center>
         <br>
         </q>
+
+
+        <div style="margin-top: 25px;"><br><br>
+        </div>
+        <a href="#" id="show1"  style=" margin-left:1000px ; margin-top: -50px " class = "button4"  >
+        <span class = "content"><b>+Remove</b></span></a>
+<!-- ปุ่มsave-->
+        <q1><button id ="hide1" name="remove_account" style=" margin-left:1050px ; margin-top:60px " class = "buttonsave">
+                <span class = "content"><b>remove</b></span>
+        </button>
+<!-- link data base -->
+        <center>
+        <div  style='margin-top:-85px; margin-left:100px;border-radius: 6px; background-color:white; height:135px ; width: 550px'>
+                <br>
+                <br>
+                <img src='images/user.png' ALIGN = "MIDDLE" width="60" height="70">
+                <b style =" margin-left:10px; font-family: 'Work Sans', sans-serif; font-size: 16px ">No</b>
+                <input style ="width:350px; height:23px; margin-top:5px; margin-left:55px" name="No" type="text" placeholder="No"><!-- link data base -->
+                
+        </div>
+        
+        </center>
+        <br>
+        </q1>
+
 
         <?php
                 $sql = "SELECT * FROM table_account";
@@ -109,7 +142,8 @@
                 $save = "";
                 while($row = mysqli_fetch_array($smyData)){
                     echo "<div style='margin-top:0px; margin-left:450px'class='statuskru'>";
-                    echo "<p class='text-head'><b> Name: </b>".$row["teacher_name"]."</p><br>";
+                    echo "<p class='text-head'><b> No: </b>".$row["No"]."</p><br>";
+                    echo "<p class='text'><b> Name: </b>".$row["teacher_name"]."</p><br>";
                     echo "<p class='text'><b>Email: </b>".$row["teacher_email"]."</p><br>";
                     echo "<p class='text'><b>Password: </b>".$row["teacher_password"]."</p><br>";
                     echo "<img style='width: 28%; height: auto; margin-top: -107px; margin-left: 288px;' src='images/user.png'>";
@@ -171,5 +205,13 @@
                   VALUES ('$count','$teacher_name','$teacher_email','$teacher_password','$teacher_status')";
         $query_run = mysqli_query($con,$query);
         echo '<script type="text/javascript"> alert("Input Account successful!") </script>';
+    }
+    if(isset($_POST['remove_account'])){
+            $sql ="SELECT * FROM table_account";
+            $smyData = mysqli_query($con,$sql);
+            $No = $_POST['No'];
+          $query = "DELETE FROM `table_account` WHERE `table_account`.`No` = $No";
+          $query_run = mysqli_query($con,$query);
+          echo '<script type="text/javascript"> alert("Remove Account successful!") </script>';
   }
 ?>

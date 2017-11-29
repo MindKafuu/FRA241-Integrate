@@ -115,3 +115,63 @@
     border-radius: 5px;
     font-size: 12px;
 }
+.container {
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+    margin-bottom:28px;
+}
+
+/* Hide the browser's default checkbox */
+.container input {
+    position: absolute;
+    opacity: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+    position: absolute;
+    height: 35px;
+    width: 95px;
+    background-color: #00e600;
+}
+
+
+
+/* When the checkbox is checked, add a blue background */
+.container input:checked ~ .checkmark {
+    background-color: #ff0000;
+}
+
+
+/* Show the checkmark when checked */
+.container input:checked ~ .checkmark:after {
+    display:block;
+}
+
+table, td, th {
+    border: 1px solid #ececec;
+}
+
+.headbox{
+    border-radius: 3px;
+    border:1px solid #ff6c00;
+    background-color: black;
+    height: 35px;
+    width: 95px;
+    text-align:center;
+    color: #ececec;
+}
+.whitetab{
+	border:1px solid #ff6c00;
+	border-radius:10px;
+	height: 30px;
+	width: 280px;
+	font-size: 1em;
+	padding-left: 10px;
+}
+.whitetab:hover{
+	height: 30px;
+	width: 280px;
+	transition: .5s;
+}

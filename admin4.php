@@ -22,14 +22,6 @@
     <link href="https://fonts.googleapis.com/css?family=Anonymous+Pro|Work+Sans" rel="stylesheet">
 
     <title>Classroom Schedule</title>
-    <script>
-    function myFunction1() {
-            document.getElementById("green").innerHTML ="40";
-        }
-    function myFunction2() {
-            document.getElementById("green").innerHTML ="80";
-        }
-    </script>
     </head>
 
   <style>
@@ -62,7 +54,7 @@
         <a href="admin1.php" class="btn1"><b>Home</b></a>
         <a href="admin2.php" class="btn1"><b>User Info</b></a>
         <a href="admin3.php" class="btn1"><b>Class Info</b></a>
-        <a href="admin4.php" class="btn1"style=" color: #79a2ff"><b>Class Management</b></a>
+        <a href="admin4.php" class="btn1"style=" color: #79a2ff"><b>Room Management</b></a>
         <a href="admin5.php" class="btn1"><b>Summary</b></a>
         <a href="admin6.php" class="btn1"><b>User status</b></a>
         <a href="admin7.php" class="btn1"><b>Complete</b></a>
@@ -73,28 +65,26 @@
             <a href="admin4-2.php" class="btn2"><b>Studio room</b></a><br><br> <!--แก้ link-->
             <a href="admin4-1.php" class="btn2"><b>Classroom</b></a><br><br>    <!--แก้ link-->
         </div>
-        <div style="margin-top: -150px; margin-left: 400px">
+        <div style="margin-top: -200px; margin-left: 480px">
 
-          <b style="font-family: 'Work Sans', sans-serif; font-size: 24px">Computer  </b>
-            <br><br><br>
-          <b style="font-family: 'Work Sans', sans-serif; font-size: 24px">Capacity </b>
+          <b style="font-family: 'Work Sans', sans-serif; font-size: 24px">Computer(Code room):  </b>
+            <br><br>
+            <input class="whitetab" name="room_code" type="text" id="username"></input>&nbsp&nbsp&nbsp<b>Ex. FB306</b>
+            <br><br>
+          <b style="font-family: 'Work Sans', sans-serif; font-size: 24px">Capacity: </b>
 
         </div>
 
-        <div style="margin-top:-95px; margin-left:530px">
-        <input class="whitetab" name="room_code" type="text" id="username"
-        
-        </div>
 
-        <div style="margin-top:25px; margin-left:-40px">
+        <div style="margin-top:25px; margin-left:440px;">
         <select name="size">
-          <option value="MENU">Menu</option>
+        <option value="MENU" >Menu</option>
           <option value="40">40</option>
-          <option value="80">80</option>
+          <option value="80">80</option></b>
         </select>
 
         </div>
-        <div style="margin-top:100px; margin-left:-600px">
+        <div style="margin-top:150px; margin-left:-520px">
         <button name="save_data" class = "buttonsave">
         <span class = "content"><b>save</b></span>
         </button>

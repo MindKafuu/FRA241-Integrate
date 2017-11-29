@@ -145,19 +145,29 @@ if(isset($_POST['Fundametal_save'])){
     <title>Classroom Schedule</title>
     <script >
         function hidet(){
-        document.getElementById("green").style.visibility="hidden";
-        document.getElementById("save1").style.visibility="visible";//save
-    }
-        function showt(){
-            var y1 = document.getElementById("g1").value;
-        	  var y2 = document.getElementById("g2").value;
-        	  var y3 = document.getElementById("g3").value;
-              document.getElementById("green").style.visibility="visible";//show dropdown
-              document.getElementById("save1").style.visibility="hidden";//save
-            if(y1=="" ||y3=="" ||y2=="" ){
-        		    alert("Box is empty!");
-        	}
-    }
+          document.getElementById("green").style.visibility="hidden";
+          document.getElementById("knight").style.visibility="hidden";
+          document.getElementById("greed").style.visibility="hidden";
+      }
+      function showt(){
+        var y1 = document.getElementById("g1").value;
+      var y2 = document.getElementById("g2").value;
+      var y3 = document.getElementById("g3").value;
+        document.getElementById("green").style.visibility="visible";//show dropdown
+        document.getElementById("knight").style.visibility="visible";//show dropdown
+        document.getElementById("greed").style.visibility="visible";
+        if(y1=="" ||y3=="" ||y2=="" ){
+            alert("Box is empty!");
+      }
+
+
+
+}
+    function gg(){
+    		document.getElementById("green").style.visibility="hidden";
+        	document.getElementById("knight").style.visibility="hidden";
+        	document.getElementById("greed").style.visibility="hidden";
+    	}
     </script>
   </head>
   <style>
@@ -432,6 +442,9 @@ if(isset($_POST['Fundametal_save'])){
             <div style="margin-top:20px;margin-left:-145px;margin-bottom:40px;">
             <button name="Fundametal_save" class = "buttonsave">
                 <span class = "content"><b>FundamentalSave</b></span>
+            </button>
+            <button id="greed" onclick="gg()" class = "buttonsave">
+                <span class = "content"><b>cancle</b></span>
             </button>
           </div>
         </div>

@@ -1,12 +1,12 @@
 <?php
   require 'dbconfig/config.php';
   /*  หน้า input Class Management ห้องเรียน ปัจจุบันรับค่าจาก textbox ได้
-      ห้องปกติ ความจุ 40 หรือ 80 ได้ */
+      ห้องcomputer ความจุ 40 เท่านั้น แต่เผื่ออนาคต 80 ได้ */
 ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <!--meta--> 
+    <!--meta-->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
 
@@ -22,16 +22,8 @@
     <link href="https://fonts.googleapis.com/css?family=Anonymous+Pro|Work+Sans" rel="stylesheet">
 
     <title>Classroom Schedule</title>
-    <script>
-    function myFunction1() {
-            document.getElementById("green").innerHTML ="40";
-        }
-    function myFunction2() {
-            document.getElementById("green").innerHTML ="80";
-        }
-    </script>
-  </head>
-  
+    </head>
+
   <style>
     body {
     background-color: #ececec;
@@ -67,65 +59,56 @@
         <a href="admin6.php" class="btn1"><b>User status</b></a>
         <a href="admin7.php" class="btn1"><b>Complete</b></a>
     </div>
-        <div style="margin-top:25px;">
+        <div style="margin-top: 25px;">
             <br><b class="topics">Class Management</b><br><br>
             <a href="admin4.php" class="btn2"><b>Computer room</b></a><br><br> <!--แก้ link-->
-            <a href="admin4-2.php" class="btn2"><b>Studio room</b></a><br><br>    <!--แก้ link-->
+            <a href="admin4-2.php" class="btn2"><b>Studio room</b></a><br><br> <!--แก้ link-->
             <a href="admin4-1.php" class="btn2"style="background-color:#79a2ff"><b>Classroom</b></a><br><br>    <!--แก้ link-->
         </div>
-        <div style="margin-top: -150px; margin-left: 400px">
-        
-                  <b style="font-family: 'Work Sans', sans-serif; font-size: 24px">Classroom  </b>
-                    <br><br><br>
-                  <b style="font-family: 'Work Sans', sans-serif; font-size: 24px">Capacity </b>
-        
-                </div>
-        
-                <div style="margin-top:-95px; margin-left:530px">
-                <input class="whitetab" name="room_code" type="text" id="username"
-                
-                </div>
-        
-                <div style="margin-top:25px; margin-left:-40px">
-                <select name="size">
-                  <option value="MENU">Menu</option>
-                  <option value="40">40</option>
-                  <option value="80">80</option>
-                </select>
-        
-                </div>
-                <div style="margin-top:100px; margin-left:-600px">
-                <button name="save_data" class = "buttonsave">
-                <span class = "content"><b>save</b></span>
-                </button>
-                </div>
+        <div style="margin-top: -200px; margin-left: 480px">
+
+          <b style="font-family: 'Work Sans', sans-serif; font-size: 24px">Classroom(Code room):  </b>
+            <br><br>
+            <input class="whitetab" name="room_code" type="text" id="username"></input>&nbsp&nbsp&nbsp<b>Ex. FB301</b>
+            <br><br>
+          <b style="font-family: 'Work Sans', sans-serif; font-size: 24px">Capacity: </b>
+
+        </div>
+
+
+        <div style="margin-top:25px; margin-left:440px;">
+        <select name="size">
+        <option value="MENU" >Menu</option>
+          <option value="40">40</option>
+          <option value="80">80</option></b>
+        </select>
+
+        </div>
+        <div style="margin-top:150px; margin-left:-520px">
+        <button name="save_data" class = "buttonsave">
+        <span class = "content"><b>save</b></span>
+        </button>
+        </div>
     </form>
   </body>
 </html>
 <?php
-  /*  font-end หน้านี้
-     room code, size room ของห้องปกติ เก็บไว้ที่ตาราง table_room
-
-    ***room_size  เก็บ drop down ยังไม่ได้ทำ***
-    ***การ Refresh หน้า จะส่งข้อมูลเดิมซ้ำ ต้องเปลี่ยนหน้า ถึงจะ clear ข้อมูล*** */
-
+//////////////////////////////ROOM///////////////////////////////////////
     if(isset($_POST['save_data'])){
-        /*    เก็บ ห้องรหัสห้องคอม กับความจุ    */
         $sql = "SELECT * FROM table_room";
         $smyData = mysqli_query($con, $sql);
         while($row = mysqli_fetch_array($smyData)) {
             $count = $row['No'] + 1 ;
             $room_code = $_POST['room_code'];
             $room_type  = 'classroom';
-            $room_size  = '40';
+            $room_size  = $_POST['size'];
             $query = "INSERT INTO table_room(No,room_code,room_type,room_size) VALUES ('$count','$room_code','$room_type','$room_size')";
             $query_run = mysqli_query($con,$query);
             if($query_run){
-                header('location:admin4-1.php');
+                header('location:admin4.php');
                 exit;
                 break;
             }
         }
     }
-
 ?>

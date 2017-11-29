@@ -58,31 +58,40 @@
             <br><b class="topics">Home</b>
         </div>
         <?php
-                $allsubject = "SELECT DISTINCT subject_code AS Subjects FROM table_teacher_subject";
-                $sql = "SELECT * FROM table_teacher_subject";
-                $smyData = mysqli_query($con, $sql);
-                $smyData2 = mysqli_query($con, $allsubject);
-                $save = "";
-                while($row = mysqli_fetch_array($smyData2)){
+                $allsubject = "SELECT DISTINCT subject_code AS Subjects FROM table_teacher_subject 
+                				ORDER BY `table_teacher_subject`.`subject_code` ASC";
+                $data = "SELECT * FROM `table_teacher_subject` 
+                			ORDER BY `table_teacher_subject`.`subject_code` ASC";
+                $description = "SELECT DISTINCT subject_code AS subjects_input FROM `table_subject_description_input` 
+                				ORDER BY `table_subject_description_input`.`subject_code` ASC";
+                
+                $sub_code = mysqli_query($con, $allsubject);
+                while($row = mysqli_fetch_array($sub_code)){
+                    $status = "0";
                     $check = $row['Subjects'];
                     echo "<div style='margin-top:0px; margin-left:450px'class='statuskru'>";
                     echo "<p class='text-head'> <b>".$row["Subjects"]."</b></p><br>";
-                    if($save != "") {
-                        echo "<p class='text'>".$save."</p><br>";
+
+                    $sub_des = mysqli_query($con, $description);
+                    while($row = mysqli_fetch_array($sub_des)) {
+                    	if($check == $row['subjects_input']){
+                    		$status = "1";
+                    		break;
+                    	}
                     }
-                    while($row = mysqli_fetch_array($smyData)) {
-                        
+                    $sub_data = mysqli_query($con, $data);
+                    while($row = mysqli_fetch_array($sub_data)) {
                         if($check == $row['subject_code'])
                         {
                             echo "<p class='text'>".$row['teacher_name']."</p><br>";
                         }
-                        else if($check != $row['subject_code']) {
-                            
-                            $save = $row['teacher_name'];
-                            break;
-                        }
                     }
-                    echo "<img src='images/tick.png'>";
+                    if ($status == "1"){
+                    	echo "<img src='images/tick.png' width='120' height='90'>";
+                    }
+                    else if($status == "0"){
+                    	echo "<img src='images/x.png' width='40' height='60' style='margin-left: 460px'>";
+                    }
                     echo "</div>";
                     echo "<br>";
                     echo "<br>";

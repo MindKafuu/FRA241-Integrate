@@ -65,20 +65,18 @@
             <a href="admin4-2.php" class="btn2"><b>Studio room</b></a><br><br> <!--แก้ link-->
             <a href="admin4-1.php" class="btn2"><b>Classroom</b></a><br><br>    <!--แก้ link-->
         </div>
-        <div style="margin-top: -150px; margin-left: 400px">
+        <div style="margin-top: -200px; margin-left: 480px">
 
-          <b style="font-family: 'Work Sans', sans-serif; font-size: 24px">Computer  </b>
-            <br><br><br>
-          <b style="font-family: 'Work Sans', sans-serif; font-size: 24px">Capacity </b>
+          <b style="font-family: 'Work Sans', sans-serif; font-size: 24px">Computer(Code room):  </b>
+            <br><br>
+            <input class="whitetab" name="room_code" type="text" id="username"></input>&nbsp&nbsp&nbsp<b>Ex. FB306</b>
+            <br><br>
+          <b style="font-family: 'Work Sans', sans-serif; font-size: 24px">Capacity: </b>
 
         </div>
 
-        <div style="margin-top:-95px; margin-left:530px">
-        <input class="whitetab" name="room_code" type="text" id="username"
-        
-        </div>
 
-        <div style="margin-top:25px; margin-left:-40px;">
+        <div style="margin-top:25px; margin-left:440px;">
         <select name="size">
         <option value="MENU" >Menu</option>
           <option value="40">40</option>
@@ -86,7 +84,7 @@
         </select>
 
         </div>
-        <div style="margin-top:100px; margin-left:-600px">
+        <div style="margin-top:150px; margin-left:-520px">
         <button name="save_data" class = "buttonsave">
         <span class = "content"><b>save</b></span>
         </button>

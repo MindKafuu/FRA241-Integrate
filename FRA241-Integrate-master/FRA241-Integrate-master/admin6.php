@@ -49,7 +49,7 @@
         <a href="admin1.php" class="btn1"><b>Home</b></a>
         <a href="admin2.php" class="btn1"><b>User Info</b></a>
         <a href="admin3.php" class="btn1"><b>Class Info</b></a>
-        <a href="admin4.php" class="btn1"><b>Class Management</b></a>
+        <a href="admin4.php" class="btn1"><b>Room Management</b></a>
         <a href="admin5.php" class="btn1"><b>Summary</b></a>
         <a href="admin6.php" class="btn1" style=" color: #79a2ff"><b>User status</b></a>
         <a href="admin7.php" class="btn1"><b>Complete</b></a>
@@ -93,7 +93,7 @@
                 echo "<br>";
                 echo "<br>";
             }
-            echo "<br>";
+                echo "<br>";
         ?>            
 
       </body>

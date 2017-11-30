@@ -109,24 +109,12 @@ select{
     border-radius:4px; 
     display: inline-block;
     font:18px 'Work Sans', sans-serif ;
-    margin-left:130px;
+    margin-left:20px;
     line-height: 1.5em;
     padding: 7px 20px 7px 14px;
     color:black;
     text-align: center;
     margin-top:-5px;
-}
-.year1{
-    background-color: white;
-    border:1px solid #ff6d00;
-    border-radius:4px; 
-    display: inline-block;
-    font:18px 'Work Sans', sans-serif ;
-    margin-left:40px;
-    line-height: 1.5em;
-    padding: 7px 20px 7px 14px;
-    color:black;
-    text-align: center;
 }
 .lecturer{
     background-color: white;

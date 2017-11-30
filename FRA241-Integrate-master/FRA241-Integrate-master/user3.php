@@ -76,8 +76,8 @@
             }
 
             function hideA(){
-                document.getElementById("gd").style.visibility="hidden";//ไม่โชว์ให้เอาอันนี้ออก
-                document.getElementById("vz").style.visibility="hidden";//ไม่โชว์ให้เอาอันนี้ออก
+                document.getElementById("#topic").style.visibility="hidden";//ไม่โชว์ให้เอาอันนี้ออก
+                document.getElementById("#split").style.visibility="hidden";//ไม่โชว์ให้เอาอันนี้ออก
                 //document.getElementById("roomA").style.visibility="hidden";
                 //document.getElementById("roomB").style.visibility="hidden";
                 
@@ -85,8 +85,8 @@
 
              function labelfng(){
                 
-                document.getElementById("gd").style.visibility="visible";
-                document.getElementById("vz").style.visibility="visible";
+                document.getElementById("#topic").style.visibility="visible";
+                document.getElementById("#split").style.visibility="visible";
                	var y = document.getElementById("labelfn").value;
                     if(y==1){
                         var green = "<select name='period' ><option value='1'>1</option>";
@@ -155,7 +155,7 @@
   <form action="user3.php" method="post">
   <div style="margin-top: -94px; margin-left:87.7%">
   <a href="index.php" class="btn"><b>?</b></a>
-  <button onclick="greed()" name="logout" class="btn"><b>logout</b></button>
+  <button onclick="greed()" name="logout" class="btn"><b>Log out</b></button>
   </div>
 
   <div style="margin-top: 20px; margin-left:60.3%">
@@ -164,19 +164,29 @@
   <a href="user3.php" class="btn1"style=" color: #79a2ff"><b>Classroom</b></a>
   <a href="user4.php" class="btn1"><b>Schedule</b></a>
   </div>
-  <div style="margin-top: 25px;">
+  
+    <div style="margin-top: 25px;">
     <br><b class="topics">Classroom</b><br><br>
-  </div>
-      <div  style="margin-top:0px; margin-left: 400px">
-        
-      <p  style =" font-family: 'Work Sans', sans-serif; font-size: 24px;"><b> Subject code  </b> </p><br>
-<div id="gd">
-      <p style ="margin-top:3px; font-family: 'Work Sans', sans-serif; font-size: 24px"><b>  Subject name  </b></p><br>
-      <p style ="margin-top:3px; font-family: 'Work Sans', sans-serif; font-size: 24px"><b>  Subject level  </b></p><br>
-      <p style ="margin-top:5px; font-family: 'Work Sans', sans-serif; font-size: 24px"> <b> Lecturer </b></p><br>
-      <p style ="margin-top:2px; font-family: 'Work Sans', sans-serif; font-size: 24px"> <b> Hour/week </b></p><br><br>
+    </div>
+      
+        <div  style="margin-top:-20px; margin-left: 400px">
+       <p  style =" font-family: 'Work Sans', sans-serif; font-size: 24px;"><b> Subject code  </b> </p><br><br>
         </div>
-      <div style="margin-top:-320px; margin-left:150px">
+       <div id="topic" style="margin-top:20px; margin-left: 100px">
+       <p style ="margin-top:3px; font-family: 'Work Sans', sans-serif; font-size: 24px"><b>  Subject name  </b></p><br>
+       <p style ="margin-top:3px; font-family: 'Work Sans', sans-serif; font-size: 24px"><b>  Subject level  </b></p><br>
+       <p style ="margin-top:5px; font-family: 'Work Sans', sans-serif; font-size: 24px"> <b> Lecturer </b></p><br>
+        </div>
+       <div  style="margin-top:-170px; margin-left: 800px">
+       <p style ="margin-top:2px; font-family: 'Work Sans', sans-serif; font-size: 24px"> <b> Hour/week </b></p><br><br>
+       <p style =" font-family: 'Work Sans', sans-serif; font-size: 24px"> <b> Split period:   </b>   </p><br><br>
+       <p style =" font-family: 'Work Sans', sans-serif; font-size: 24px" id="gB"> <b> Sec:  </b> </p><br><br>
+       <p style =" font-family: 'Work Sans', sans-serif; font-size: 24px"> <b> Room:   </b>   </p>
+
+      </div>
+      </div>
+      
+      <div style="margin-top:-305px; margin-left:550px">
       <?php  $sql = "SELECT * FROM  table_subject_description_input_admin";
           $result = mysqli_query($con,$sql);
           echo "<select id='s' name='subject_code' class='subject_code'>";
@@ -184,14 +194,14 @@
         while ($row = mysqli_fetch_array($result)) {
             echo "<option value='" . $row['subject_code'] ."'>" . $row['subject_code'] ."</option>";
             }
-              echo "</select>";
+              echo "</select><br><br><br><br>";
               echo "";  ?>
 
               <script type="text/javascript">
                 document.getElementById('s').value = "<?php echo $_POST['subject_code'];?>";
               </script>
 
-          <div style="margin-top:-30px; margin-left:550px" class = "buttonchoose">
+          <div style="margin-top:-95px; margin-left:280px" class = "buttonchoose">
             <input style="font-size: 17px; font-family: 'Work Sans', sans-serif"  name="ok" type="submit" value="Enter" onclick="labelfng()">
           </div>
 <?php
@@ -199,8 +209,9 @@ if(isset($_POST['ok'])){
   $x = $_POST["subject_code"];
 $result = mysqli_query($con,"SELECT * FROM table_subject_description_input_admin WHERE subject_code = '$x' ");
 while ($row = mysqli_fetch_assoc($result)) {
-  echo "<br><br>";
-  echo $row['subject_name'];
+  echo "<div style='margin-left:-260px;margin-top:65px;>";
+  echo "<br><br><br>";
+  echo "<b class='whitetab'><b>".$row['subject_name']."</b></b>";
   echo "<br>";
   break;
 }
@@ -208,24 +219,26 @@ while ($row = mysqli_fetch_assoc($result)) {
 $result = mysqli_query($con,"SELECT * FROM table_subject_description_input_admin WHERE subject_code = '$x' ");
 while ($row = mysqli_fetch_assoc($result)) {
   echo "<br>";
-  echo $row['subject_level'];
-  echo "<input type='hidden' name='" . $row['subject_level'] ."'>";
+  echo "<p class='whitetab' type='hidden' name=''><b>". $row['subject_level'] ."</b></p>";
   echo "<br><br>";
   break;
 }
 $result = mysqli_query($con,"SELECT * FROM table_teacher_subject WHERE subject_code = '$x' ");
+echo "<div class='statuskru'></div>";
 while ($row = mysqli_fetch_assoc($result)) {
-  echo $row['teacher_name'];
-  echo "<br>";
-
+  echo "<div class='name'>";
+  echo "<b >".$row['teacher_name']."</b><br>";
+  echo "<br></div>";
+  //style='margin-bottom:50px;margin-left:20px
 }
 
 $result = mysqli_query($con,"SELECT * FROM table_subject_description_input_admin WHERE subject_code = '$x' ");
 while ($row = mysqli_fetch_assoc($result)) {
-  echo "<br>";
-  echo $row['subject_hour_per_week'];
+  echo "<div style='margin-top:-404px; margin-left:680px'>";
+  echo "<b>".$row['subject_hour_per_week']."</b>";
   echo "<br><br>";
   echo "<input type='hidden' id='labelfn' value='" . $row['subject_hour_per_week'] ."'>";
+  echo "</div>";
   break;
 }
 
@@ -234,16 +247,16 @@ while ($row = mysqli_fetch_assoc($result)) {
 ?>
 
       </div><br><br>
-<div id="vz">
+        <div id="split" style="margin-left:500px">
         <div  style="margin-top:0px; margin-left:300px" class = "buttonchoose">
             <input style="font-size: 17px; font-family: 'Work Sans', sans-serif" type="button" value="Split" onclick="labelfng()">
         </div>
-        <p style =" font-family: 'Work Sans', sans-serif; font-size: 24px"> <b> Split period:   </b>   </p>
-        <div style="margin-top:-10px; margin-left:170px" id="gB"></div><br>
+        <!--<p style =" font-family: 'Work Sans', sans-serif; font-size: 24px"> <b> Split period:   </b>   </p>
+        <div style="margin-top:-10px; margin-left:550px" id="gB"></div><br>
         <br>
-        <p style =" font-family: 'Work Sans', sans-serif; font-size: 24px"> <b> Sec:  </b> </p>
+        <p style =" font-family: 'Work Sans', sans-serif; font-size: 24px"> <b> Sec:  </b> </p>-->
 
-        <div style="margin-top:-33px; margin-left:25px">
+        <div style="margin-top:15px; margin-left:-190px">
 
         <select name="SEC" id="mySelect">
             <option value="AB">A+B</option>
@@ -255,12 +268,11 @@ while ($row = mysqli_fetch_assoc($result)) {
 
         </div>
 
-        <p style =" font-family: 'Work Sans', sans-serif; font-size: 24px"> <b> Room:   </b>   </p>
+        <!--<p style =" font-family: 'Work Sans', sans-serif; font-size: 24px"> <b> Room:   </b>   </p>-->
 
 <?php   $sql = "SELECT * FROM table_room";
         $result = mysqli_query($con,$sql);
-      echo "<div style='margin-top:-40px; margin-left:50px'>";
-
+      echo "<div style='margin-top:25px; margin-left:-180px'>";
       echo "<c><select id='roomAB' name='room' >";
         echo "<option value='' >Section room</option>";
         while ($row = mysqli_fetch_array($result)) {
@@ -271,7 +283,9 @@ while ($row = mysqli_fetch_assoc($result)) {
      ?>
 
     </b>
+    <div style="margin-top:40px;margin-left:290px">
     <input  type="submit" name="save" value="save" >
+    </div>
 </div>
       </form>
   </body>

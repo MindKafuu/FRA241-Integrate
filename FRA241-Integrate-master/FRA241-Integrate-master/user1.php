@@ -59,44 +59,20 @@
             $allsubject = "SELECT * FROM table_account";
             $smyData2 = mysqli_query($con, $allsubject);
             $save = "";
-            $name = "";
-            $code = "";
             while($row = mysqli_fetch_array($smyData2)){
                 if($row['teacher_email'] == $_SESSION['username']) {
+                    echo"<div style= 'margin-top: -40px; margin-left: 200px'>";
                     echo "<img class='mind1' src='images/man.png'>";
-                    echo"<div style= 'margin-top: 180px; margin-left: -50px'>";
-                    echo "<div style='margin-top:-400px; font-size:26px'class='statuskru'>";
-                    echo "<p class='mind'> <b> Name: ".$row['teacher_name']."</b></p>";
-                    $name = $row['teacher_name'];
-                    echo "<p class='mind'> <b>Email: ".$row["teacher_email"]."</b></p>";
-                    echo "<p class='mind'> <b>Password: ".$row["teacher_password"]."</b></p>";
-
-                    $allsubject = "SELECT * FROM table_teacher_subject";
-                    $smyData2 = mysqli_query($con, $allsubject);
-                    
-                    while($row = mysqli_fetch_array($smyData2)){
-                        
-                        if($row['teacher_name'] == $name) {
-                            echo "<p class='mind'> <b>Code: ".$row["subject_code"]."</b></p>";
-                            $code = $row["subject_code"];
-                            $save = $row["teacher_name"];
-                        }
-                        
-                        if($row['subject_code'] == $code) {
-                            echo "<p class='mind'> <b>Teacher Co-op: ".$row["teacher_name"]."</b></p>";
-                        }
-                    }
-
-                    
-
+                    echo "<div style='margin-top:-350px; margin-left:500px; font-size:26px'class='statuskru'>";
+                    echo "<p style='margin-top:-120px class='mind'> <b> Name: ".$row['teacher_name']."</b></p><br>";
+                    echo "<p style='margin-top:-10px; margin-left:450px class='mind'> <b>Email: ".$row["teacher_email"]."</b></p><br>";
+                    echo "<p style='margin-top:-10px; margin-left:450px class='mind'> <b>Password: ".$row["teacher_password"]."</b></p><br>";
                     echo "</div>";
                     echo "</div>";
                     echo "<br>";
                     echo "<br>";
-
                 }
             }
-
         ?>            
 
 </body>

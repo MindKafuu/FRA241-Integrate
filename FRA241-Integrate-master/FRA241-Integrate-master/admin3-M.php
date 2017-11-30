@@ -30,7 +30,7 @@
         $query = "INSERT INTO table_teacher_subject(No,teacher_name,subject_code)
                                 VALUES ('$count','$teacher_name','$subject_code')";
         $query_run = mysqli_query($con,$query);
-        header('location:admin3.php');
+        header('location:admin3-M.php');
   }
 
 /////////////////////////// Fundamental Subject //////////////////////////////
@@ -120,7 +120,7 @@ if(isset($_POST['Fundametal_save'])){
          VALUES ('$count','$subject_level','$subject_code','$subject_name','$subject_hour_per_week',
                  '$subject_sec4','$day4','$start_time4','$end_time4')";
               $query_run = mysqli_query($con,$query);
-              header('location:admin3.php');
+              header('location:admin3-M.php');
  }
 ?>
 <!DOCTYPE html>
@@ -146,19 +146,28 @@ if(isset($_POST['Fundametal_save'])){
     <script >
         function hidet(){
           document.getElementById("green").style.visibility="hidden";
+          document.getElementById("knight").style.visibility="hidden";
+          document.getElementById("greed").style.visibility="hidden";
       }
       function showt(){
-        document.getElementById("green").style.visibility="visible";//show dropdown
         var y1 = document.getElementById("g1").value;
-        var y2 = document.getElementById("g2").value;
-        if(y1==""||y2==""){
-          alert("Your box is empty");
-        }
-        
-        }
-      function greed(){
-        document.getElementById("green").style.visibility="hidden";
+      var y2 = document.getElementById("g2").value;
+      var y3 = document.getElementById("g3").value;
+        document.getElementById("green").style.visibility="visible";//show dropdown
+        document.getElementById("knight").style.visibility="visible";//show dropdown
+        document.getElementById("greed").style.visibility="visible";
+        if(y1=="" ||y3=="" ||y2=="" ){
+            alert("Box is empty!");
       }
+
+
+
+}
+    function gg(){
+    		document.getElementById("green").style.visibility="hidden";
+        	document.getElementById("knight").style.visibility="hidden";
+        	document.getElementById("greed").style.visibility="hidden";
+    	}
 
     </script>
   </head>
@@ -183,7 +192,7 @@ if(isset($_POST['Fundametal_save'])){
         <b>Classroom Schedule</b>
         </div><br><br>
         </header>
-        <form action="admin3.php" method="post">
+        <form action="admin3-M.php" method="post">
         <div style="margin-top: -94px; margin-left:87.7%">
         <a href="index.php" class="btn"><b>?</b></a>
         <a href="index.php" class="btn"><b>Log out</b></a>
@@ -191,16 +200,16 @@ if(isset($_POST['Fundametal_save'])){
     <div style="margin-top: 20px; margin-left:33.3%">
         <a href="admin1.php" class="btn1"><b>Home</b></a>
         <a href="admin2.php" class="btn1"><b>User Info</b></a>
-        <a href="admin3.php" class="btn1" style=" color: #79a2ff"><b>Class Info</b></a>
-        <a href="admin4.php" class="btn1"><b>Class Management</b></a>
+        <a href="admin3.php" class="btn1"style=" color: #79a2ff"><b>Class Info</b></a>
+        <a href="admin4.php" class="btn1"><b>Room Management</b></a>
         <a href="admin5.php" class="btn1"><b>Summary</b></a>
         <a href="admin6.php" class="btn1"><b>User status</b></a>
         <a href="admin7.php" class="btn1"><b>Complete</b></a>
     </div>
         <div style="margin-top:25px;">
             <br><b class="topics">Class Information</b><br><br><br>
-            <a href="admin3.php" class="btn2" style="background-color:#79a2ff"><b>Bachelor's degree</b></a><br><br>
-            <a href="admin3-M.php" class="btn2"><b>Master's degree</b></a><br><br>
+            <a href="admin3.php" class="btn2"><b>Bachelor's degree</b></a><br><br>
+            <a href="admin3-M.php" class="btn2"style="background-color:#79a2ff"><b>Master's degree</b></a><br><br>
             <a href="admin3-D.php" class="btn2"><b>Doctor's degree</b></a><br><br>
         </div>
         <div style="margin-top: -200px; margin-left: 400px">
@@ -222,16 +231,14 @@ if(isset($_POST['Fundametal_save'])){
 
           <br><br>
           <div style="margin-top: -408px;margin-left:175px; line-height:1;">
-
-                <input type="text" id="g1" class="whitetab" style= "margin-left: 20px; margin-top:22px" name="code" required><br><br><br>
-                <input type="text" id="g2" name="subject_name"  class="whitetab" style= "margin-left: 20px" required><br><br><br>
-
-                <select name="year" class="year">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                </select><br><br><br>
+           <input id="g2" type="text" class="whitetab" style= "margin-left: 20px; margin-top:22px" name="code" required><br><br><br>
+            <input id="g3" type="text" name="subject_name"  class="whitetab" style= "margin-left: 20px" required><br><br><br>
+            <select name="year" class="year">
+            <option value="D1">1</option>
+            <option value="D2">2</option>
+            <option value="D3">3</option>
+            <option value="D4">4</option>
+            </select><br><br><br>
             <?php  $sql = "SELECT * FROM table_account";
               $result = mysqli_query($con,$sql);
               echo "<div style='margin-top:-10px; margin-left:-20px;'>";
@@ -258,7 +265,7 @@ if(isset($_POST['Fundametal_save'])){
 
 
           <div>
-            <button onclick="showt()" type="button" class = "fundamental" >Fundamental Subjects</button>
+            <button type="button" class = "fundamental" onclick="showt()">Fundamental Subjects</button>
           </div>
 
           <br><br><br>
@@ -268,10 +275,12 @@ if(isset($_POST['Fundametal_save'])){
           <button id="save1" name="save_data" class = "buttonsave">
               <span class = "content"><b>SAVE</b></span>
       </button>
-          
+          <a href="#" style="margin-left: 620px ; margin-top:-33px"class = "button5">
+                <span class = "content"><b>+</b></span>
+            </a>
         </div>
             </br> </br> </br>
-            <div id="green" style= "margin-top:90px" >
+            <div style= "margin-top:90px" id="green">
             <select name="subject_sec1">
             <option value="">Sec</option>
             <option value="AA">A</option>
@@ -444,10 +453,9 @@ if(isset($_POST['Fundametal_save'])){
             <button name="Fundametal_save" class = "buttonsave">
                 <span class = "content"><b>FundamentalSave</b></span>
             </button>
-            <button type="BOTTON" onclick="greed()" class = "buttonsave">
-                <span class = "content"><b>Cancle</b></span>
+            <button id="greed" onclick="gg()" class = "buttonsave">
+                <span class = "content"><b>cancle</b></span>
             </button>
-
           </div>
         </div>
 

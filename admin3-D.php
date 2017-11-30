@@ -146,28 +146,19 @@ if(isset($_POST['Fundametal_save'])){
     <script >
         function hidet(){
           document.getElementById("green").style.visibility="hidden";
-          document.getElementById("knight").style.visibility="hidden";
-          document.getElementById("greed").style.visibility="hidden";
       }
       function showt(){
-        var y1 = document.getElementById("g1").value;
-      var y2 = document.getElementById("g2").value;
-      var y3 = document.getElementById("g3").value;
         document.getElementById("green").style.visibility="visible";//show dropdown
-        document.getElementById("knight").style.visibility="visible";//show dropdown
-        document.getElementById("greed").style.visibility="visible";
-        if(y1=="" ||y3=="" ||y2=="" ){
-            alert("Box is empty!");
+        var y1 = document.getElementById("g1").value;
+        var y2 = document.getElementById("g2").value;
+        if(y1==""||y2==""){
+          alert("Your box is empty");
+        }
+        
+        }
+      function greed(){
+        document.getElementById("green").style.visibility="hidden";
       }
-
-
-
-}
-    function gg(){
-    		document.getElementById("green").style.visibility="hidden";
-        	document.getElementById("knight").style.visibility="hidden";
-        	document.getElementById("greed").style.visibility="hidden";
-    	}
     </script>
   </head>
   <style>
@@ -230,8 +221,8 @@ if(isset($_POST['Fundametal_save'])){
 
           <br><br>
           <div style="margin-top: -408px;margin-left:175px; line-height:1;">
-           <input id="g2" type="text" class="whitetab" style= "margin-left: 20px; margin-top:22px" name="code" required><br><br><br>
-            <input id="g3" type="text" name="subject_name"  class="whitetab" style= "margin-left: 20px" required><br><br><br>
+           <input id="g1" type="text" class="whitetab" style= "margin-left: 20px; margin-top:22px" name="code" required><br><br><br>
+            <input id="g2" type="text" name="subject_name"  class="whitetab" style= "margin-left: 20px" required><br><br><br>
             <select name="year" class="year">
             <option value="D1">1</option>
             <option value="D2">2</option>
@@ -250,7 +241,16 @@ if(isset($_POST['Fundametal_save'])){
               echo "</div>";  ?>
           <!--  <input type="text" name="lecturer"      class="whitetab" style= "margin-left: 20px"><br><br><br> -->
             <br><br>
-            <input id="g1" type="text" name="hours_per_week"class="whitetab" style= "margin-left: 20px;" required><br><br><br>
+            <select name="hour-week" class="year">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="4">5</option>
+            <option value="4">6</option>
+            <option value="4">7</option>
+            <option value="4">8</option>
+            </select><br><br><br>
           </div>
 
 
@@ -265,9 +265,7 @@ if(isset($_POST['Fundametal_save'])){
           <button id="save1" name="save_data" class = "buttonsave">
               <span class = "content"><b>SAVE</b></span>
       </button>
-          <a href="#" style="margin-left: 620px ; margin-top:-33px"class = "button5">
-                <span class = "content"><b>+</b></span>
-            </a>
+         
         </div>
             </br> </br> </br>
             <div style= "margin-top:90px" id="green">
@@ -443,7 +441,7 @@ if(isset($_POST['Fundametal_save'])){
             <button name="Fundametal_save" class = "buttonsave">
                 <span class = "content"><b>FundamentalSave</b></span>
             </button>
-            <button id="greed" onclick="gg()" class = "buttonsave">
+            <button  onclick="greed()" class = "buttonsave">
                 <span class = "content"><b>cancle</b></span>
             </button>
           </div>
